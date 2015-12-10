@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>表单验证规则</title>  
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" href="../resource/plugins/niceValidator/style.css" />
+	
+	<style>
+	.tb-form-tip{ color: #999; font-size: 12px;}
+	.tb-form-tit{ color: #2a2a2a; font-weight: bold; color: #444; text-align: right; vertical-align: top}
+	</style>
+
+	<script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+	<!-- my97日期 --> 
+	<script type='text/javascript' src="../resource/plugins/My97DatePicker/WdatePicker.js"></script>
+	<!-- 表单验证 -->
+	<script type="text/javascript" src="../resource/plugins/niceValidator/jquery.validator.js"></script>
+	<script type="text/javascript" src="../resource/plugins/niceValidator/local/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#activitiesNature-offline").click(function(){
+				if($(this).is(":checked")){
+					$("#chooseShopWrap").show();
+				}else{
+					$("#chooseShopWrap").hide();
+					$("#selectedShopsId").val("");
+					$("#selectedShopsName").val("");
+				}
+			})
+		})
+		function doChooseShop(callbakMethodName){
+			gWin.target({
+				gtit : "选择指定门店",
+				gurl : "select_shop.html"
+			});
+			art.dialog.data("callbackMethod",callbakMethodName);
+		}	
+		//多选回调内容函数
+		function chooseShopCallback(itemArray){	
+			var _selectedShopsName = "",_selectedShopsId = "";
+			//each便利数组
+			$.each(itemArray, function(){
+				_selectedShopsName+=this.name+","
+				_selectedShopsId+=this.id+","
+			});
+			_selectedShopsName = _selectedShopsName.substr(0,_selectedShopsName.length-1);
+			_selectedShopsId = _selectedShopsId.substr(0,_selectedShopsId.length-1);
+			$("#selectedShopsName").val(_selectedShopsName);
+			$("#selectedShopsId").val(_selectedShopsId);
+		}
+	</script>
+</head>
+<body>
+	<center><font color="red" size="5">根据网络中样例整理表单校验使用方法</font></center><br/>
+	jquery基础框架引入：<font color="blue">../js/jquery-1.10.2.min.js</font><br/>
+	如果项目采用jQuery作为框架，则引用jquery.validator.js版本：<font color="blue">niceValidator/jquery.validator.js</font><br/>
+	详情API可以参考官方网站：<font color="blue"><a href="http://niceue.com/validator/">http://niceue.com/validator/</a></font><br/><br/>
+	<font color="red">本次校验框架有个小bug，有时刷新页面出现校验失效，需要在页面加载时引入一段JS，如下：</font><br/>
+	<font color="red">$(window).on('beforeunload', function(){</font><br/>
+    <font color="red">&nbsp;&nbsp;&nbsp;&nbsp;window.focus();</font><br/>
+    <font color="red">});</font><br/>
+    <font color="red">注意：在V0.8.0版本已经解决了该bug</font><br/>
+    <font color="red">校验成功后文本框后面是默认没有绿色的勾。如果需要的话加一个属性data-validator-option="{showOk:''}"，或者是在全局配置zh_CN.js中加入showOk: ""配置项</font><br/>
+    <br/><br/>
+	<div class="container">
+		<!-- 内容区域 -->
+		<div class="mainbox">
+			<!-- 常规校验 -->
+			<div class="mod-normal baseinfo clearfix">
+				<div class="tit-normal">
+					<i class="prefix-icon"></i>
+					<h2>常规校验</h2>
+				</div>
+				<div class="content">
+					<form action="activity_add-step2.html">
+					<table class="tb-form">
+						<tr>
+							<th class="tb-form-tit" width="120">必填：</th>
+							<td>
+								<input type="text" name="f1" id="f1" data-rule="required" class="normal input_large" placeholder="">								
+								<span class="tb-form-tip">
+									data-rule="required"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">下拉：</th>
+							<td>
+								<select name="f2" id="f2" data-rule="required" class="select_large">
+									<option value="" selected>请选择</option>
+									<option value="1">母婴</option>
+								</select>
+								<span class="tb-form-tip">
+									data-rule="required"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">单选：</th>
+							<td>
+								<label class="tb-form-lb-gp" for="f3-1">
+									<input type="radio" name="f3" id="f3-1" value="1" data-rule="checked"> 营销类
+								</label>
+								<label class="tb-form-lb-gp" for="f3-2">
+									<input type="radio" name="f3" id="f3-2" value="2"> 服务类
+								</label>
+								<span class="tb-form-tip">
+									给第一个选项添加属性：data-rule="checked"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">多选：</th>
+							<td>
+								<label class="tb-form-lb-gp" for="f4-1">
+									<input type="checkbox" name="f4" id="f3-1" value="1" data-rule="checked"> 营销类
+								</label>
+								<label class="tb-form-lb-gp" for="f4-2">
+									<input type="checkbox" name="f4" id="f4-2" value="2"> 服务类
+								</label>
+								<span class="tb-form-tip">
+									给第一个选项添加属性：data-rule="checked"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">多选俩个：</th>
+							<td>
+								<label class="tb-form-lb-gp" for="f5-1">
+									<input type="checkbox" name="f5" id="f5-1" value="1" data-rule="checked[2~]"> 营销类
+								</label>
+								<label class="tb-form-lb-gp" for="f5-2">
+									<input type="checkbox" name="f5" id="f5-2" value="2"> 服务类
+								</label>
+								<label class="tb-form-lb-gp" for="f5-3">
+									<input type="checkbox" name="f5" id="f5-3" value="3"> 社交类
+								</label>
+								<span class="tb-form-tip">
+									给第一个选项添加属性：data-rule="checked[2~]"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">固定电话：</th>
+							<td>
+								<input type="text" name="tel" id="tel" data-rule="required;tel" class="normal input_large"/>
+								<span class="tb-form-tip">
+									添加属性：data-rule="required;tel"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">手机号：</th>
+							<td>
+								<input type="text" name="mobile" id="mobile" data-rule="required;mobile" class="normal input_large">
+								<span class="tb-form-tip">
+									添加属性：data-rule="required;mobile"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">邮箱：</th>
+							<td>
+								<input type="text" name="email" id="email" data-rule="required;email" class="normal input_large">
+								<span class="tb-form-tip">
+									添加属性：data-rule="required;email"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">网址：</th>
+							<td>
+								<input type="text" name="url" id="url" data-rule="required;url" class="normal input_large">
+								<span class="tb-form-tip">
+									添加属性：data-rule="required;url"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">邮编：</th>
+							<td>
+								<input type="text" name="pcode" id="pcode" data-rule="required;postcode" class="normal input_large">
+								<span class="tb-form-tip">
+									添加属性：data-rule="required;postcode"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">大于4：</th>
+							<td>
+								<textarea rows="5" name="f6" id="f6" data-rule="描述:required;length[4~]"></textarea>
+								<span class="tb-form-tip">
+									添加属性：data-rule="描述:required;length[4~]"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">8-100个字符：</th>
+							<td>
+								<textarea rows="5" name="f7" id="f7" data-rule="描述:required;length[8~100, true]"></textarea>
+								<span class="tb-form-tip">
+									添加属性：data-rule="描述:required;length[8~100, true]"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit">时间范围：</th>
+							<td>
+								<input type="text" id="starttime" onFocus="var endtime=$dp.$('endtime');WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',onpicked:function(){endtime.focus();},maxDate:'#F{$dp.$D(\'endtime\')}'})" data-rule="required;"  data-target="#SEtimetip" class="normal input_medium Wdate">
+								<span class="tb-form-text">至</span>
+								<input type="text" id="endtime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',minDate:'#F{$dp.$D(\'starttime\')}'})" data-rule="required;" data-target="#SEtimetip" class="normal input_medium Wdate">
+								<span id="SEtimetip"></span>
+								<P class="tb-form-tip">
+									添加属性：data-rule="required",data-target="#SEtimetip".#SEtimetip为存储消息的容器id
+								</P>
+							</td>
+						</tr>						
+					</table>
+					<div class="tb-form-action">
+						<button type="submit" class="btn btn-step-next">提交</button>
+					</div>
+					</form>
+				</div>
+			</div>
+			<!-- 匹配校验 -->
+			<div class="mod-normal baseinfo clearfix">
+				<div class="tit-normal">
+					<i class="prefix-icon"></i>
+					<h2>匹配校验-浮动层提示（form增加属性data-validator-option="{theme:'yellow_bottom',stopOnError:true}"）</h2>
+				</div>
+				<div class="content">
+					<form action="activity_add-step2.html" data-validator-option="{theme:'yellow_bottom',stopOnError:true}">
+					<table class="tb-form">
+						<tr>
+							<th class="tb-form-tit" width="120">必填：</th>
+							<td>
+								<input type="text" name="user[pwd]" data-rule="密码: required;password;" class="normal input_large">	
+								<span class="tb-form-tip">
+									data-rule="密码: required;password;"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit" width="120">必填：</th>
+							<td>
+    							<input name="againPwd" data-rule="确认密码: required;match(user[pwd]);"  class="normal input_large">							
+								<span class="tb-form-tip">
+									data-rule="确认密码: required;match(user[pwd]);"
+								</span>
+							</td>
+						</tr>
+					</table>
+					<div class="tb-form-action">
+						<button type="submit" class="btn btn-step-next">提交</button>
+					</div>
+					</form>
+				</div>
+			</div>
+			<!-- 数值校验 -->
+			<div class="mod-normal baseinfo clearfix">
+				<div class="tit-normal">
+					<i class="prefix-icon"></i>
+					<h2>数值校验</h2>
+				</div>
+				<div class="content">
+					<form action="">
+					<table class="tb-form">
+						<tr>
+							<th class="tb-form-tit" width="120">正整数：</th>
+							<td>
+								<input type="text" name="n1" id="n1" data-rule="required;integer; range[1~]" class="normal input_large">
+								<span class="tb-form-tip">
+									data-rule="required;integer;range[1~]"
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<th class="tb-form-tit" width="120">数字范围：</th>
+							<td>
+    							<input type="text" name="n2" id="n2" data-rule="required;integer; range[1~50]" class="normal input_large">	
+								<span class="tb-form-tip">
+									data-rule="required;integer;range[1~50]"
+								</span>
+							</td>
+						</tr>
+					</table>
+					<div class="tb-form-action">
+						<button type="submit" class="btn btn-step-next">提交</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		
+		
+			<!-- 自定义校验规则 -->
+			<div class="mod-normal baseinfo clearfix">
+				<div class="tit-normal">
+					<i class="prefix-icon"></i>
+					<h2>自定义校验规则</h2>
+				</div>
+				<div class="content">
+					<textarea rows="20" cols="80">
+// 第一种方式：===============
+$.validator.config({
+    rules: {	//自定义验证函数，具有最大的灵活性，没有什么不能验证
+    	myRule: function(element, param, field){
+    		//do something... 返回true就是验证成功，否则直接返回其它，如：“字符规则不通过”等字符串返回
+    		return true;
+    	}
+    	//简单配置正则及错误消息，及其方便another: [/^\w*$/, '请输入字母或下划线']
+    }
+});
+//定义验证成功后回调函数
+$('#mainForm').on('valid.form', function(e, form){
+	alert("成功");
+	form.submit(); // 或者做异步提交
+});
+// 第二种方式：=================
+$('#autoRuleForm').validator({
+    rules: {	//自定义验证函数，具有最大的灵活性，没有什么不能验证
+    	myRule: function(element, param, field){
+    		//do something... 返回true就是验证成功，否则直接返回其它，如：“字符规则不通过”等字符串返回
+    		return true;
+    	}
+    	//简单配置正则及错误消息，及其方便another: [/^\w*$/, '请输入字母或下划线']
+    },
+	fields: {
+		DATA_CODE: "myRule"
+	},
+	valid: function(form){	// 定义验证完成后表单的校验
+		addPrivilegeEvent();
+	}
+});
+					</textarea>
+					<script type="text/javascript">
+					$(document).ready(function(){
+						$.validator.config({
+						    rules: {	//自定义验证函数，具有最大的灵活性，没有什么不能验证
+						    	myRule: function(element, param, field){
+						    		//do something... 返回true就是验证成功，否则直接返回其它，如：“字符规则不通过”等字符串返回
+						    		alert('【' +element.value+ '】数据验证成功');
+						    		return true;
+						    	}
+						    	//简单配置正则及错误消息，及其方便another: [/^\w*$/, '请输入字母或下划线']
+						    }
+						});
+						
+						//定义验证成功后回调函数
+						$('#mainForm').on('valid.form', function(e, form){
+							autoRuleEvent(form); // 或者做异步提交
+						});
+					});
+					
+					function autoRuleEvent(form) {
+						alert('表单验证完成，进入的方法，如果需要提交表单，则：form.submit();');
+					}
+					</script>
+					<form id="autoRuleForm" name="autoRuleForm" action="">
+						<table class="tb-form">
+							<tr>
+								<th class="tb-form-tit" width="120">自定义规则：</th>
+								<td>
+									<input id="DATA_CODE" name="DATA_CODE" type="text" name="user[pwd]" data-rule="required,myRule;">	
+									<span class="tb-form-tip">
+										data-rule="required,myRule;"
+									</span>
+								</td>
+							</tr>
+						</table>
+						<div class="tb-form-action">
+							<button type="submit" class="btn btn-step-next">提交</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>progressbar-api.html</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../resource/plugins/progressbar/css/custom_progressbar.css">
+    <script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="../resource/plugins/progressbar/custom_progressbar.js" ></script>
+	
+	
+	
+	<script type="text/javascript">
+	function openBar() {
+		//alert($(window).width()+"========="+$('#testDiv').innerWidth());
+		customProgressbar.show({barId : '1',controlObj : $('#testDiv') , showMessage : '测试1测试1测试1' , waitTime : 5 ,barClosedFun : barClosedFun });
+		customProgressbar.show({barId : '2',controlObj : $('#testDiv2') , showMessage : '测试2测试2测试2'});
+	}
+	function hideBar() {
+		customProgressbar.hide({barId : '1'});
+		customProgressbar.hide({barId : '2'});
+	}
+	function barClosedFun() {
+		alert('进度条结束了');
+	}
+	
+	</script>
+	
+  </head>
+  
+  <body>
+	<input id="abc" name="abc" type="button" value="进度条open" onclick="openBar()"/>
+	<input id="abc" name="abc" type="button" value="进度条hide" onclick="hideBar()"/><br/><br/><br/>
+  	<div id="testDiv" style="width: 400px;height: 200px">
+		<div id="abcde">22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+  	</div><br/>华丽的分割线<br/><br/>
+  	<div id="testDiv2" style="width: 100%;height: 100%">
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+		<div>22222222222222222232743971398274849847984794798472384898472984749873987422</div>
+  	</div>
+  		<center><font color="red" size="5">使用方法</font></center><br/>
+	<div style="width: 100px;">
+		<textarea rows="40" cols="120">
+/**
+ * 自定义进度条
+ * fengjie 2014-11-26
+ * 使用方式如下：
+ * 1、启用进度条控件；
+ 		var customProgressbar = new CustomProgressbar(); // 建议在公共页面统一初始化
+ * 2、设定进度条基本参数； // 建议在公共页面统一初始化
+		customProgressbar.init({
+	   		// 元素的不透明级别。 默认值: 1
+			opacity ： 1 ,
+			// 遮罩层的背景图片（设置了图片，背景颜色就无效）
+			backgroundImage : '', 
+			// 遮罩层的背景颜色
+			backgroundColor : '#AAAAAA',
+			// 进度条图片
+			barImage : '宽度为22px的图片' ,
+			// 遮罩层z-index设置越大越不会背其它元素遮挡
+			zIndex ：'默认是9999，根据情况设置'
+		});
+ * 3、使用进度条详细说明；
+		customProgressbar.show({
+			barId : '1',	// 进度条编号（删除时区分唯一），可以为空，默认0；（多个区域使用进度条则必填）
+			controlObj : $('#testDiv') ,  // 进度条作用域jquery对象，可以为空，默认document.body；（指定区域使用进度条则必填）
+			showMessage : '测试1测试1测试1' ,	// 进度条上面的消息文字，可以为空，默认数据加载中，请耐心等待……；（可选）
+			waitTime : 5 ,	// 进度条的加载时间，单位秒，可以为空，默认超时60秒；（可选）
+			barClosedFun : barClosedFun // 进度条超时关闭时回调函数，默认空，自定义（可选）
+		});
+		customProgressbar.hide({
+			barId : '1',	// 进度条编号（删除时区分唯一），可以为空，默认0；
+		});
+ * 4、进度条简单使用说明；仅限一个页面统一用一个进度条
+		customProgressbar.show();
+		customProgressbar.hide();
+ *
+ */		
+		</textarea>
+  	</div>
+
+
+  </body>
+</html>

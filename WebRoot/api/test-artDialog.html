@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>artDialog-api.html</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3"/>
+    <meta http-equiv="description" content="this is my page"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<link rel="stylesheet" href="../resource/plugins/artDialog/style.css" />
+    <script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../resource/plugins/artDialog/jquery.artDialog.js"></script>
+	<script language="javascript" type="text/javascript" src="../resource/plugins/artDialog/plugins/iframeTools.js"></script>
+  	<script>
+  	function warningArtDialog() {
+        art.dialog.message("warning","警告不要任性！",null);
+  	}
+  	function succeedArtDialog() {
+        art.dialog.message("succeed","提交成功！",null);
+  	}
+  	function errorArtDialog() {
+        art.dialog.message("error","后台数据处理异常！",null);
+  	}
+  	function infoArtDialog() {
+        art.dialog.message("info","我只是一条消息而已！",null);
+  	}
+  	function questionArtDialog() {
+        art.dialog.isSubmit("是否真的提交数据？", 
+	        function(){
+			    art.dialog.tips('你提交了操作');
+			}, function(){
+			    art.dialog.tips('你取消了操作');
+			}
+		);
+        
+  	}
+  	</script>
+  </head>
+  
+  <body>
+    <button onclick="warningArtDialog()">警告</button><br/><br/>
+    <button onclick="succeedArtDialog()">成功</button><br/><br/>
+    <button onclick="errorArtDialog()">错误</button><br/><br/>
+    <button onclick="infoArtDialog()">普通消息</button><br/><br/>
+    <button onclick="questionArtDialog()">是否真的提交</button>
+  </body>
+</html>

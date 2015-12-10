@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>tablePage-api.html</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- jquery基础加载 -->
+    <script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+    <!-- 进度条 -->
+    <link rel="stylesheet" type="text/css" href="../resource/plugins/progressbar/css/custom_progressbar.css" />
+	<script type="text/javascript" src="../resource/plugins/progressbar/custom_progressbar.js" ></script>
+    <!-- 列表分页 -->
+    <link rel="stylesheet" type="text/css" href="../resource/plugins/table/style.css" />
+    <script language="javascript" type="text/javascript" src="../resource/plugins/table/custom_table.js"></script>
+    
+    <style>
+	/*全局定义*/
+	body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
+	body{font-family:"宋体";-webkit-text-size-adjust:100%;background:#fff;color:#5b6274;font-size:12px;}
+	h1,h2,h3,h4,h5,h6{font-size:100%;}
+	address,cite,dfn,em,i,var,caption{font-style:normal;}
+	ul,ol,li{list-style:none;}a,a img,button {cursor:pointer;}
+	button,input,select,textarea{font-size:100%}
+	table{border-collapse:collapse;border-spacing:0}
+	img,input,select,button,textarea{border:0;vertical-align:middle}
+	a:focus,input:focus,button:focus,select:focus,textarea:focus{outline:none;}
+	/********全局定义*********/
+    </style>
+	
+	<script type="text/javascript">
+	/**
+	 * 员工查询页面JS对象
+	 */
+	Empee_list = function(){
+		
+		/**
+		 * 主内容mainform
+		 */
+		this.mainform = null;
+		
+		/**
+		 * 当前员工列表数据
+		 */
+		this.empeeTableList = new Object();
+		
+		/**
+		 * 创建table处理对象
+		 */
+		this.customTable = new Custom_table();
+		
+		/**
+		 * 初始化条件数据(给外部方法使用，里面不要有this)
+		 * initQueryData实现的函数返回值必须是Object对象，有且仅有url和data两个属性
+		 */
+		this.initQueryData = function() {
+			var queryUrl = '/BaseWeb/servlet/EmpeeServlet';
+			var requestObj = new Object();
+			requestObj['url'] = queryUrl;
+			requestObj['data'] = new Object();
+			requestObj['data']['pageSize'] = empee_list.customTable.getPageSize();
+			requestObj['data']['startNum'] = empee_list.customTable.getStartNum();	// 当前记录数开始序列，默认从0开始
+			/* 定义查询条件
+			requestObj['data']['EMPEE_CODE'] = EMPEE_CODE;
+			requestObj['data']['EMPEE_NAME'] = EMPEE_NAME;
+			requestObj['data']['EMPEE_ACCT'] = EMPEE_ACCT;
+			requestObj['data']['LATN_ID'] = LATN_ID;
+			requestObj['data']['STAFF_TYPE'] = STAFF_TYPE;
+			requestObj['data']['USER_TYPE'] = USER_TYPE;
+			requestObj['data']['STATE'] = STATE;*/
+			return requestObj;
+		}
+		
+		/**
+		 * 处理行数据方法(给外部方法使用，里面不要有this)
+		 */
+		this.processEmpeeRow = function( seq , tempBean) {
+			var rowHtml = '';
+			// 把查询出来的集合保存下来
+			empee_list.empeeTableList[tempBean.EMPEE_ID] = tempBean;
+			rowHtml = '<td align="center">'+seq+ '</td>'
+				+ '<td>' +empee_list.processUndefined(tempBean.EMPEE_CODE)+ '&nbsp;</td>'
+				+ '<td>' +empee_list.processUndefined(tempBean.EMPEE_NAME)+ '&nbsp;</td>'
+				+ '<td>' +empee_list.processUndefined(tempBean.EMPEE_ACCT)+ '&nbsp;</td>'
+				+ '<td>' +empee_list.processUndefined(tempBean.USER_TYPE_NAME)+ '&nbsp;</td>'
+				+ '<td>' +empee_list.processUndefined(tempBean.EMPEE_MOB_NO)+ '&nbsp;</td>'
+				+ '<td>' +empee_list.processUndefined(tempBean.STATE_NAME)+ '&nbsp;</td>';
+			return rowHtml;
+		}
+		
+		/**
+		 * 处理undefined字符串
+		 */
+		this.processUndefined = function (tempData) {
+			return tempData == undefined ? '' : tempData; 
+		}
+		
+		/**
+		 * 分页查询用户列表信息
+		 */
+		this.searchEmpee = function() {
+			this.customTable.initDefaultConfig();
+			this.customTable.initTable();
+		}
+		
+		/**
+		 * 初始化
+		 */
+		this.init = function() {
+			this.mainform = $('#mainform');
+			this.customTable.init({
+				table : this.mainform.find('#empeeTable'),	//列表table展示对象
+				tableTbody : this.mainform.find('#empeeTableTbody'),	//列表table body展示对象
+				tablePageDiv : this.mainform.find('#empeeTablePageDiv'),	//列表table page展示对象
+				columnNum : 7,	//列表table 列数
+				pageSize :5,	// 每页显示的条数，可以不设定，默认是10
+				processRowFun : this.processEmpeeRow,	// 列表行排列集函数
+				initQueryDataFun : this.initQueryData,	// 初始化条件数据，返回非空条件集合则执行ajax查询函数
+				rowClickFun : this.rowClick,			// 添加行点击事件（可选）
+				loadEndFun : this.loadEnd				// 数据加载完成后执行的自定义方法（可选）
+			});
+			
+			// 事件绑定
+			this.bind();
+		}
+		
+		/**
+		 * 添加行点击事件（可选）
+		 */
+		this.rowClick = function(clickData) {
+			alert(clickData.EMPEE_CODE + clickData.EMPEE_NAME);
+		}
+		
+		/**
+		 * 数据加载完成后执行的自定义方法（可选）
+		 */
+		this.loadEnd = function(tData) {
+			alert("数据加载完成，当前页面数据为："+tData.length);
+		}
+		
+		/**
+		 * 按钮等事件绑定
+		 */
+		this.bind = function(){
+			Dic.addEvent(this.mainform.find('#searchEmpeeBtn'), 'click', this.searchEmpee, null, this);
+		}
+		
+	}
+	
+	var empee_list = new Empee_list();
+	
+	$(document).ready(function(){
+		// 初始化
+		empee_list.init();
+	
+	});
+	
+	var Dic = new Object();
+	Dic.addEvent = function(element, type, fun, args, domain) {
+		if (!domain)
+			domain = null;
+		element.bind(type, function(arg) {
+					eval(fun.call(domain, arg, args));
+				});
+	}
+	</script>
+  </head>
+  
+  <body>
+
+	<div id="mainform">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td align="right" width="10%">员工姓名：</td>
+				<td width="20%"><input type="text" name="EMPEE_NAME" id="EMPEE_NAME" class="input150" /></td>
+				<td align="right" width="10%">员工账号：</td>
+				<td width="20%"><input type="text" name="EMPEE_ACCT" id="EMPEE_ACCT" class="input150" /></td>
+				<td align="right" width="10%">本地网：</td>
+				<td><select name="LATN_ID" id="LATN_ID" class="select156">
+						<c:if test="${latnIdScope == '' }"><option value="">请选择</option></c:if>
+						<cm:tydic_hz sqlscriptID="WEBSELECTION.queryLatn" outType="ids" condition="${latnIdScope}" /> 
+					  </select></td>
+				<td align="center">
+					<input id="searchEmpeeBtn" name="searchEmpeeBtn" type="button" value="查询" />&nbsp;&nbsp;
+					<input type="reset" value="重置"/>&nbsp;&nbsp;
+				</td>
+			</tr>
+		</table>
+		<!-- 列表数据 -->	
+		<table id="empeeTable" width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+			<thead>
+			    <tr>
+			        <th width="5%">序号</th>
+			        <th>员工编码</th>
+			        <th width="20%">员工姓名</th>
+			        <th>员工账号</th>
+			        <th>员工类型</th>
+			        <th width="10%">手机号</th>
+			        <th>状态</th>
+				</tr>
+			</thead>
+			<tbody id="empeeTableTbody"></tbody>
+		</table>
+		<!-- 分页 -->	
+    	<div id="empeeTablePageDiv" class="page"></div>
+	</div>
+	<br/><br/><br/><br/>
+	<center><font color="red" size="5">使用方法</font></center><br/>
+	<div style="width: 100px;">
+		<textarea rows="60" cols="120">
+/**
+ * 分页列表JS对象
+ * fengjie
+ * =======================使用方式=====================
+	1、初始化；
+	Custom_table customTable = new Custom_table();
+	customTable.init({
+		// 列表table展示对象（必填）
+		table : this.mainform.find('#empeeTable'),
+		// 列表table body展示对象（必填）
+		tableTbody : this.mainform.find('#empeeTableTbody'),
+		// 列表table page展示对象（必填）
+		tablePageDiv : this.mainform.find('#empeeTablePageDiv'),
+		// 列表table 列数（必填）
+		columnNum : 7,
+		// 列表行排列集函数（必填）
+		processRowFun : this.processEmpeeRow,
+		// 初始化条件数据，返回非空条件集合则执行ajax查询函数（必填）
+		initQueryDataFun : this.initQueryData,
+		// 添加行点击事件（可选）
+		rowClickFun : this.rowClick	,
+		// 数据加载完成后执行的自定义方法（可选）
+		loadEndFun : this.loadEnd ,
+		// 每页显示的条数，可以不设定，默认是10（可选）
+		pageSize :5,
+		// 扩展的参数（可选）
+		extConfig : {
+			// 是否显示进度条
+			isOnloadProgress : false,
+			// 是否立即加载
+			isOnload : true
+		}
+	});
+	2、实现：初始化条件数据(给外部方法使用，里面不要有this)
+	// initQueryData实现的函数返回值必须是Object对象，有且仅有url和data两个属性
+	this.initQueryData = function() {
+		var queryUrl = '/BaseWeb/servlet/EmpeeServlet';
+		var requestObj = new Object();
+		requestObj['url'] = queryUrl;
+		requestObj['data'] = new Object();
+		// 当前记录数开始序列，默认从0开始(必须的传递的参数)
+		requestObj['data']['pageSize'] = empee_list.customTable.getPageSize();
+		requestObj['data']['startNum'] = empee_list.customTable.getStartNum();
+		
+		//定义查询条件
+		requestObj['data']['EMPEE_CODE'] = EMPEE_CODE;
+		requestObj['data']['EMPEE_NAME'] = EMPEE_NAME;
+		…………
+		return requestObj;
+	}
+	3、实现：处理行数据方法
+	this.processEmpeeRow = function( seq , tempBean) {
+		var rowHtml = '';
+		// 把查询出来的集合保存下来
+		empee_list.empeeTableList[tempBean.EMPEE_ID] = tempBean;
+		rowHtml = '<td align="center">'+seq+ '</td>'
+			+ '<td>123&nbsp;</td>'
+			+ '<td>123&nbsp;</td>'
+			+ '<td>13&nbsp;</td>';
+		return rowHtml;
+	}
+	4、后台返回格式参考
+	   返回格式以JSON格式{data:{totleRows:25,dataList:[{EMPEE_CODE:'A001',EMPEE_NAME:'张三',EMPEE_ACCT:'zhangsan',USER_TYPE_NAME:'系统用户',EMPEE_MOB_NO:'13888888888',STATE_NAME:'有效'}]}}
+ */
+		</textarea>
+	</div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://www.juheweb.com/demo/2014/09181542/_doc/iframeA.html -->
+<HTML><HEAD><META content="IE=7.0000" http-equiv="X-UA-Compatible">
+<TITLE>test</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+
+<link rel="stylesheet" href="../resource/plugins/artDialog/style.css" />
+<script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="../resource/plugins/artDialog/jquery.artDialog.js"></script>
+<script language="javascript" type="text/javascript" src="../resource/plugins/artDialog/plugins/iframeTools.js"></script>
+
+<META name=GENERATOR content="MSHTML 10.00.9200.17148"></HEAD>
+<BODY style="MARGIN: 0px">
+<DIV 
+style="HEIGHT: 300px; PADDING-BOTTOM: 20px; PADDING-TOP: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; WIDTH: 400px">
+<DIV class=tips 
+style="BORDER-TOP: #d7eae2 1px solid; BORDER-RIGHT: #d7eae2 1px solid; BACKGROUND: #eef7f5; BORDER-BOTTOM: #d7eae2 1px solid; COLOR: #000; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 5px; MARGIN: 4px 0px; BORDER-LEFT: #d7eae2 1px solid; PADDING-RIGHT: 5px; border-radius: 3px">我是iframe页面：<A 
+href="iframeA.html" 
+target=_blank>iframeA.html</A></DIV><INPUT id=aInput 
+style="PADDING-BOTTOM: 4px; PADDING-TOP: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; WIDTH: 15em" 
+value=我是小A><BUTTON id=aButton>传递给B页面</BUTTON><BUTTON 
+id=exit>关闭并返回数据到主页面</BUTTON><BUTTON id=reload>刷新主页面</BUTTON> </DIV>
+<SCRIPT>
+if (art.dialog.data('test')) {
+	document.getElementById('aInput').value = art.dialog.data('test');// 获取由主页面传递过来的数据
+};
+
+// 传递给B页面
+document.getElementById('aButton').onclick = function () {
+	var aValue = document.getElementById('aInput').value;
+	art.dialog.data('aValue', aValue);// 存储数据
+	
+	var path = art.dialog.data('homeDemoPath') || './';// 
+	
+	art.dialog.open(path + 'iframeB.html?fd', {
+		id: 'AAA',
+		close: function () {
+			var bValue = art.dialog.data('bValue');// 读取B页面的数据
+			if (bValue !== undefined) document.getElementById('aInput').value = bValue;
+		}
+	}, false);
+};
+
+// 关闭并返回数据到主页面
+document.getElementById('exit').onclick = function () {
+	var origin = artDialog.open.origin;
+	var aValue = document.getElementById('aInput').value;
+	var input = origin.document.getElementById('demoInput04-3');
+	input.value = aValue;
+	input.select();
+	art.dialog.close();
+};
+
+// 刷新主页面
+document.getElementById('reload').onclick = function () {
+	art.dialog.data('iframeTools', '我知道你刷新了页面～哈哈'); // plugin.iframe.html可以收到
+	var win = art.dialog.open.origin;//来源页面
+	// 如果父页面重载或者关闭其子对话框全部会关闭
+	win.location.reload();
+	return false;
+};
+</SCRIPT>
+</BODY></HTML>

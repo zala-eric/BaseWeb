@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>tree-api.html</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- jquery基础加载 -->
+    <script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+    <!-- TREE -->
+    <link rel="stylesheet" type="text/css" href="../resource/plugins/tree/dicTree.css" />
+    <script language="javascript" type="text/javascript" src="../resource/plugins/tree/dicTree.js"></script>
+    <script language="javascript" type="text/javascript" src="../resource/plugins/tree/dicAsynchTree.js"></script>
+    <script language="javascript" type="text/javascript" src="../resource/plugins/tree/dicAutoTree.js"></script>
+	<script type="text/javascript">
+	
+	
+	jQuery(function($) {
+		dicTreePicPath = '../resource/plugins/tree/images/';
+		initAutoTree();
+		initAsynchTree();
+		initTree();
+	});
+	
+	/**
+	 * 同步加载树展示首节点（适用于数据量稍大，1W条以内）
+	 */
+	var cTree = new CustomTree();
+	function initTree() {
+		var firstNode = new Object();
+		// 创建首节点
+		firstNode['nId'] = '-1';
+		firstNode['vId'] = '-1';
+		firstNode['fId'] = '';
+		firstNode['name'] = '权限树';
+		firstNode['level'] = 1;
+
+		var allNode = createNode(10,50,100);	// 所有权限节点
+		
+		// 初始化
+		cTree.initParameter({
+			treeDiv : $('#dicTreeDiv'),	// 指定要展示的div的对象
+			headNode : firstNode,		// 首目录节点的对象，JS的Object类型
+			allChildNode : allNode,	// 要展示所有节点的集合（不包括首目录），JS的Array类型
+			firstNodeId : '-1',
+			// 首目录的节点nId（下级节点的fId）
+			isCheckBox : false,	// 是否加入checkbox复选框
+			isClickRow : true,	// 是否引入点击文字事件
+			// 是否初始展示时节点是全部打开，这里的打开和关闭性能都一样
+			customFun : viewNode	// 点击事件的方法（isClickRow=true才有效）
+		});
+		cTree.buildTreeText();	// 在页面加载树
+		cTree.initEvent();		// 加载树的操作事件
+	}
+	
+	/**
+	 * 异步加载树（适用于数据超大，1W条以上）
+	 */
+	var asynchTree = new CustomAsynchTree();
+	function initAsynchTree() {
+		var firstNode = new Object();
+		// 创建首节点
+		firstNode['nId'] = '-1';
+		firstNode['vId'] = '-1';
+		firstNode['fId'] = '';
+		firstNode['name'] = '权限树';
+		firstNode['level'] = 1;
+
+		var allNode = createNode(10,50,1000);	// 所有权限节点
+		
+		// 初始化
+		asynchTree.initParameter({
+			treeDiv : $('#dicAsynchTreeDiv'),	// 指定要展示的div的对象
+			headNode : firstNode,		// 首目录节点的对象，JS的Object类型
+			firstNodeId : '-1',	// 首目录的节点nId（下级节点的fId）
+			isCheckBox : false,	// 是否加入checkbox复选框
+			isClickRow : true,	// 是否引入点击文字事件
+			queryNodeFun : queryNode,	// 异步查询子节点的方法（外部必须实现）
+			customFun : viewNode	// 点击事件的方法（isClickRow=true才有效）
+		});
+		asynchTree.buildTreeText();	// 在页面加载树
+		asynchTree.initEvent();		// 加载树的操作事件
+	}
+	
+	/**
+	 * 同步加载树展示全部（适用于数据量小，1000条以内）
+	 */
+	var cAutoTree = new CustomAutoTree();
+	function initAutoTree() {
+		var firstNode = new Object();
+		// 创建首节点
+		firstNode['nId'] = '-1';
+		firstNode['vId'] = '-1';
+		firstNode['fId'] = '';
+		firstNode['name'] = '权限树';
+		firstNode['level'] = 1;
+
+		var allNode = createNode(10,10,10);	// 所有权限节点
+		
+		// 初始化
+		cAutoTree.initParameter({
+			treeDiv : $('#dicAutoTreeDiv'),	// 指定要展示的div的对象
+			headNode : firstNode,		// 首目录节点的对象，JS的Object类型
+			allChildNode : allNode,
+			// 要展示所有节点的集合（不包括首目录），JS的Array类型
+			firstNodeId : '-1',	// 首目录的节点nId（下级节点的fId）
+			isCheckBox : true,	// 是否加入checkbox复选框
+			isClickRow : true,
+			isAutoSelect : true,	// 是否引入级联勾选，后续后会把当前勾选的节点的父节点全部勾选，同时把自己所有的子节点也都勾选
+			// 是否引入点击文字事件（这里暂时不提供点击文字事件）
+			isAllShow : false,
+			// 是否初始展示时节点是全部打开，这里的打开和关闭性能都一样
+			customFun : viewNode	// 点击事件的方法（isClickRow=true才有效）
+			// 勾选或者取消复选框时触发的函数，外部调用提供
+
+		});
+		cAutoTree.buildTreeText();	// 在页面加载树
+		cAutoTree.initEvent();		// 加载树的操作事件
+	}
+	
+	function createNode(a,b,c) {
+		var allNode = new Array();	// 所有权限节点
+		for (var i = 0 ; i < a ; i ++ ) {
+			var tNode = new Object();
+			tNode['nId'] = 'f'+i;
+			tNode['vId'] = 'f'+i;
+			tNode['fId'] = '-1';
+			tNode['name'] = 'first节点'+ i;
+			tNode['level'] = 2;
+			allNode.push(tNode);
+			for (var j = 0 ; j < b ; j ++ ) {
+				var sNode = new Object();
+				sNode['nId'] = tNode.nId+'s'+j;
+				sNode['vId'] = tNode.nId+'s'+j;
+				sNode['fId'] = tNode.nId;
+				sNode['name'] = 'second节点'+ j;
+				sNode['level'] = 3;
+				allNode.push(sNode);
+				for (var k = 0 ; k < c ; k ++ ) {
+					var kNode = new Object();
+					kNode['nId'] = sNode.nId+'t'+k;
+					kNode['vId'] = sNode.nId+'t'+k;
+					kNode['fId'] = sNode.nId;
+					kNode['name'] = 'third节点'+ k;
+					kNode['level'] = 4;
+					allNode.push(kNode);
+				}
+			}
+		}
+		return allNode;
+	}
+	
+	function viewNode(node) {
+		alert('点击了'+ node.nId);
+	}
+	
+	function boxProcess(node) {
+		alert('选择了'+ node.nId);
+	}
+	
+	function queryNode(fatherId) {
+		var nodes = new Array();	// 所有权限节点
+		for (var i = 0 ; i < 20 ; i ++ ) {
+			var tNode = new Object();
+			tNode['nId'] = 'n'+fatherId+i;
+			tNode['vId'] = 'n'+fatherId+i;
+			tNode['fId'] = fatherId;
+			tNode['name'] = 'father节点'+ i;
+			nodes.push(tNode);
+		}
+		return nodes;
+	}
+	</script>
+  </head>
+  
+  <body>
+	<center><font color="red" size="5">系统管理自定义树使用说明</font></center><br/>
+	<font color="#000000">点击下载：</font><font color="blue"><a href="tree-api-V1.0.doc">系统管理自定义树使用说明</a></font><br/>
+	<div style="width: 100%">
+		<div style="width: 33%;float: left;"><font color="red">同步加载树展示首节点（适用于数据量稍大，1W条以内）</font></div>
+		<div style="width: 33%;float: left;"><font color="red">异步加载树（适用于数据超大，1W条以上）</font></div>
+		<div style="width: 33%;float: left;"><font color="red">同步加载树展示全部（适用于数据量小，1000条以内）</font></div>
+		<div id="dicTreeDiv" style="width: 33%;height: 500px;float: left;overflow:auto; "></div>
+		<div id="dicAsynchTreeDiv" style="width: 33%;height: 500px;float: left;overflow:auto; "></div>
+		<div id="dicAutoTreeDiv" style="width: 33%;height: 500px;float: left;overflow:auto; "></div>
+	</div>
+	<br/><br/><br/><br/>
+	<center><font color="red" size="5">使用方法</font></center><br/>
+	<div style="width: 100px;">
+		<textarea rows="170" cols="120">
+jQuery(function($) {
+	dicTreePicPath = '../resource/plugins/tree/images/';
+	initAutoTree();
+	initAsynchTree();
+	initTree();
+});
+
+/**
+ * 同步加载树展示首节点（适用于数据量稍大，1W条以内）
+ */
+var cTree = new CustomTree();
+function initTree() {
+	var firstNode = new Object();
+	// 创建首节点
+	firstNode['nId'] = '-1';
+	firstNode['vId'] = '-1';
+	firstNode['fId'] = '';
+	firstNode['name'] = '权限树';
+	firstNode['level'] = 1;
+
+	var allNode = createNode(10,50,100);	// 所有权限节点
+	
+	// 初始化
+	cTree.initParameter({
+		treeDiv : $('#dicTreeDiv'),	// 指定要展示的div的对象
+		headNode : firstNode,		// 首目录节点的对象，JS的Object类型
+		allChildNode : allNode,	// 要展示所有节点的集合（不包括首目录），JS的Array类型
+		firstNodeId : '-1',
+		// 首目录的节点nId（下级节点的fId）
+		isCheckBox : false,	// 是否加入checkbox复选框
+		isClickRow : true,	// 是否引入点击文字事件
+		// 是否初始展示时节点是全部打开，这里的打开和关闭性能都一样
+		customFun : viewNode	// 点击事件的方法（isClickRow=true才有效）
+	});
+	cTree.buildTreeText();	// 在页面加载树
+	cTree.initEvent();		// 加载树的操作事件
+}
+
+/**
+ * 异步加载树（适用于数据超大，1W条以上）
+ */
+var asynchTree = new CustomAsynchTree();
+function initAsynchTree() {
+	var firstNode = new Object();
+	// 创建首节点
+	firstNode['nId'] = '-1';
+	firstNode['vId'] = '-1';
+	firstNode['fId'] = '';
+	firstNode['name'] = '权限树';
+	firstNode['level'] = 1;
+
+	var allNode = createNode(10,50,1000);	// 所有权限节点
+	
+	// 初始化
+	asynchTree.initParameter({
+		treeDiv : $('#dicAsynchTreeDiv'),	// 指定要展示的div的对象
+		headNode : firstNode,		// 首目录节点的对象，JS的Object类型
+		firstNodeId : '-1',	// 首目录的节点nId（下级节点的fId）
+		isCheckBox : false,	// 是否加入checkbox复选框
+		isClickRow : true,	// 是否引入点击文字事件
+		queryNodeFun : queryNode,	// 异步查询子节点的方法（外部必须实现）
+		customFun : viewNode	// 点击事件的方法（isClickRow=true才有效）
+	});
+	asynchTree.buildTreeText();	// 在页面加载树
+	asynchTree.initEvent();		// 加载树的操作事件
+}
+
+/**
+ * 同步加载树展示全部（适用于数据量小，1000条以内）
+ */
+var cAutoTree = new CustomAutoTree();
+function initAutoTree() {
+	var firstNode = new Object();
+	// 创建首节点
+	firstNode['nId'] = '-1';
+	firstNode['vId'] = '-1';
+	firstNode['fId'] = '';
+	firstNode['name'] = '权限树';
+	firstNode['level'] = 1;
+
+	var allNode = createNode(10,10,10);	// 所有权限节点
+	
+	// 初始化
+	cAutoTree.initParameter({
+		treeDiv : $('#dicAutoTreeDiv'),	// 指定要展示的div的对象
+		headNode : firstNode,		// 首目录节点的对象，JS的Object类型
+		allChildNode : allNode,
+		// 要展示所有节点的集合（不包括首目录），JS的Array类型
+		firstNodeId : '-1',	// 首目录的节点nId（下级节点的fId）
+		isCheckBox : true,	// 是否加入checkbox复选框
+		isClickRow : true,
+		isAutoSelect : true,	// 是否引入级联勾选，后续后会把当前勾选的节点的父节点全部勾选，同时把自己所有的子节点也都勾选
+		// 是否引入点击文字事件（这里暂时不提供点击文字事件）
+		isAllShow : false,
+		// 是否初始展示时节点是全部打开，这里的打开和关闭性能都一样
+		customFun : viewNode	// 点击事件的方法（isClickRow=true才有效）
+		// 勾选或者取消复选框时触发的函数，外部调用提供
+
+	});
+	cAutoTree.buildTreeText();	// 在页面加载树
+	cAutoTree.initEvent();		// 加载树的操作事件
+}
+
+function createNode(a,b,c) {
+	var allNode = new Array();	// 所有权限节点
+	for (var i = 0 ; i < a ; i ++ ) {
+		var tNode = new Object();
+		tNode['nId'] = 'f'+i;
+		tNode['vId'] = 'f'+i;
+		tNode['fId'] = '-1';
+		tNode['name'] = 'first节点'+ i;
+		tNode['level'] = 2;
+		allNode.push(tNode);
+		for (var j = 0 ; j < b ; j ++ ) {
+			var sNode = new Object();
+			sNode['nId'] = tNode.nId+'s'+j;
+			sNode['vId'] = tNode.nId+'s'+j;
+			sNode['fId'] = tNode.nId;
+			sNode['name'] = 'second节点'+ j;
+			sNode['level'] = 3;
+			allNode.push(sNode);
+			for (var k = 0 ; k < c ; k ++ ) {
+				var kNode = new Object();
+				kNode['nId'] = sNode.nId+'t'+k;
+				kNode['vId'] = sNode.nId+'t'+k;
+				kNode['fId'] = sNode.nId;
+				kNode['name'] = 'third节点'+ k;
+				kNode['level'] = 4;
+				allNode.push(kNode);
+			}
+		}
+	}
+	return allNode;
+}
+
+function viewNode(node) {
+	alert('点击了'+ node.nId);
+}
+
+function boxProcess(node) {
+	alert('选择了'+ node.nId);
+}
+
+function queryNode(fatherId) {
+	var nodes = new Array();	// 所有权限节点
+	for (var i = 0 ; i < 20 ; i ++ ) {
+		var tNode = new Object();
+		tNode['nId'] = 'n'+fatherId+i;
+		tNode['vId'] = 'n'+fatherId+i;
+		tNode['fId'] = fatherId;
+		tNode['name'] = 'father节点'+ i;
+		nodes.push(tNode);
+	}
+	return nodes;
+}
+
+<!-- html参考 -->
+<!-- <div id="dicTreeDiv" style="width: 33%;height: 500px;float: left;overflow:auto; "></div>
+<div id="dicAsynchTreeDiv" style="width: 33%;height: 500px;float: left;overflow:auto; "></div>
+<div id="dicAutoTreeDiv" style="width: 33%;height: 500px;float: left;overflow:auto; "></div> -->
+		</textarea>
+	</div>
+  </body>
+</html>

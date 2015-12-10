@@ -1,0 +1,835 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>artDialog-api.html</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../resource/plugins/artDialog/style.css" />
+    <script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../resource/plugins/artDialog/jquery.artDialog.js"></script>
+  	<style>
+  		body {font: 14px/1.11 'Microsoft Yahei'}
+  	</style>
+  </head>
+  
+  <body>
+	<center><font color="red" size="5">根据网络中样例整理了artDialog使用方法</font></center><br/>
+	<font color="#000000">自适应内容：</font><br/>
+	<font color="blue">artDialog的特殊UI框架能够适应内容变化，甚至连外部程序动态插入的内容它仍然能自适应，因此你不必去考虑消息内容尺寸使用它。它的消息容器甚至能够根据宽度让文本居中或居左对齐——这一切全是XHTML+CSS原生实现。</font><br/>
+	<font color="#000000">完善的接口：</font>
+	<font color="blue">它的接口完善，可以轻易与外部程序配合使用。如异步写入消息、控制位置、尺寸、显示与隐藏、关闭等。</font><br/>
+	<font color="#000000">细致的体验：</font>
+	<font color="blue">如果不是在输入状态，它支持Esc快捷键关闭；可指定在元素附近弹出，让操作更便捷；智能给按钮添加焦点；黄金比例垂直居中；超大响应区域特别为ipad等触屏设备优化；预先缓存皮肤图片更快响应……</font><br/>
+	<font color="#000000">跨平台兼容：</font>
+	<font color="blue">兼容：IE6+、Firefox、Chrome、Safari、Opera以及iPad等移动设备。并且IE6下也能支持现代浏览器的静止定位(fixed)、覆盖下拉控件、alpha通道png背景。</font><br/>
+	
+	
+	
+	jquery基础框架引入：<font color="blue">../js/jquery-1.10.2.min.js</font><br/>
+	如果项目采用jQuery作为框架，则引用jQuery artDialog版本：<font color="blue">/resource/plugins/artDialog/jquery.artDialog.js</font><br/>
+	如果需要在iframe应用下提供更好的支持，需要加上：<font color="blue">/resource/plugins/artDialog/plugins/iframeTools.js</font><br/><br/>
+	
+	<center><font color="red" size="4">主要参数介绍：</font></center><br/>
+
+	<DIV id=article_content class=article_content sizcache="27" sizset="79"><P sizcache="27" sizset="79">ps:<A href="iframeTools-api.html">iframeTools-api.html</A></P>
+		<TABLE class="zebra " sizcache="27" sizset="80">
+		<COLGROUP>
+		<COL class=col1>
+		<COL class=col2>
+		<COL class=col3>
+		<COL class=col4></COLGROUP>
+		<THEAD>
+		<TR>
+		<TH class=parameter style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; WIDTH: 7em; BACKGROUND-COLOR: rgb(208,219,238)">名称</TH>
+		<TH class=type style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; WIDTH: 7em; BACKGROUND-COLOR: rgb(208,219,238)">类型</TH>
+		<TH class=default style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; WIDTH: 7em; BACKGROUND-COLOR: rgb(208,219,238)">默认值</TH>
+		<TH class=note style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">描述</TH></TR></THEAD>
+		<TBODY sizcache="27" sizset="80">
+		<TR>
+		<TH class=separate style="BORDER-TOP: rgb(225,241,150) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(174,205,27) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(174,205,27) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(243,250,214) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(243,247,253)" colSpan=4>内容</TH></TR>
+		<TR class=odd sizcache="27" sizset="80">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="80"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#title">title</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">'消息'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">标题内容</TD></TR>
+		<TR sizcache="27" sizset="81">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" rowSpan=2 sizcache="27" sizset="81"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#content">content</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>'loading..'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>消息内容。<BR style="MARGIN-BOTTOM: 1.8em">1、如果传入的是HTMLElement类型，如果是隐藏元素会给其设置display:block以显示该元素，其他属性与绑定的事件都会完整保留，对话框关闭后此元素又将恢复原来的display属性，并且重新插入原文档所在位置<BR style="MARGIN-BOTTOM: 1.8em">2、如果没有设定content的值则会有loading的动画</TD></TR>
+		<TR>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">HTMLElement</TD></TR>
+		<TR>
+		<TH class=separate style="BORDER-TOP: rgb(225,241,150) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(174,205,27) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(174,205,27) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(243,250,214) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(243,247,253)" colSpan=4>按钮</TH></TR>
+		<TR sizcache="27" sizset="82">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" rowSpan=2 sizcache="27" sizset="82"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#ok">ok</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Function</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>确定按钮回调函数。<BR style="MARGIN-BOTTOM: 1.8em">函数如果返回false将阻止对话框关闭；函数this指针指向内部api；如果传入true表示只显示有关闭功能的按钮</TD></TR>
+		<TR>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Boolean</TD></TR>
+		<TR class=odd sizcache="27" sizset="83">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" rowSpan=2 sizcache="27" sizset="83"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#cancel">cancel</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Function</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>取消按钮回调函数。<BR style="MARGIN-BOTTOM: 1.8em">函数如果返回false将阻止对话框关闭；函数this指针指向内部api；如果传入true表示只显示有关闭功能的按钮<BR style="MARGIN-BOTTOM: 1.8em">对话框标题栏的关闭按钮其实就是取消按钮，只不过视觉不同罢了，点击同样触发cancel事件</TD></TR>
+		<TR class=odd>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Boolean</TD></TR>
+		<TR sizcache="27" sizset="84">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="84"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#okText">okVal</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">'确定'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">"确定按钮"文字</TD></TR>
+		<TR class=odd sizcache="27" sizset="85">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="85"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#cancelText">cancelVal</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">'取消'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">"取消按钮"文字</TD></TR>
+		<TR sizcache="27" sizset="86">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="86"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#button">button</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Array</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">自定义按钮。<BR style="MARGIN-BOTTOM: 1.8em">配置参数成员： 
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">name —— 按钮名称</DIV>
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">callback —— 按下后执行的函数</DIV>
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">focus —— 是否聚焦点</DIV>
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">disabled —— 是否标记按钮为不可用状态（后续可使用扩展方法让其恢复可用状态）</DIV><BR style="MARGIN-BOTTOM: 1.8em">
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">示例：</DIV>参数如：[{name: '登录', callback: function () {}}, {name: '取消'}] 。注意点击按钮默认会触发按钮关闭动作，需要阻止触发关闭请让回调函数返回false</TD></TR>
+		<TR>
+		<TH class=separate style="BORDER-TOP: rgb(225,241,150) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(174,205,27) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(174,205,27) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(243,250,214) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(243,247,253)" colSpan=4>尺寸</TH></TR>
+		<TR sizcache="27" sizset="87">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" rowSpan=2 sizcache="27" sizset="87"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#width">width</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Number</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>'auto'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>设置消息内容宽度，可以带单位。一般不需要设置此，对话框框架会自己适应内容。<BR style="MARGIN-BOTTOM: 1.8em">如果设置为百分值单位，将会以根据浏览器可视范围作为基准，此时如果浏览器窗口大小被改变其也会进行相应的调整</TD></TR>
+		<TR>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">String</TD></TR>
+		<TR class=odd sizcache="27" sizset="88">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" rowSpan=2 sizcache="27" sizset="88"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#height">height</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Number</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>'auto'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>设置消息内容高度，可以带单位。不建议设置此，而应该让内容自己撑开高度。<BR style="MARGIN-BOTTOM: 1.8em">如果设置为百分值单位，将会以根据浏览器可视范围作为基准，此时如果浏览器窗口大小被改变其也会进行相应的调整</TD></TR>
+		<TR class=odd>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD></TR>
+		<TR>
+		<TH class=separate style="BORDER-TOP: rgb(225,241,150) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(174,205,27) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(174,205,27) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(243,250,214) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(243,247,253)" colSpan=4>位置</TH></TR>
+		<TR sizcache="27" sizset="89">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="89"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#fixed">fixed</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Boolean</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">false</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">开启静止定位。静止定位是css2.1的一个属性，它静止在浏览器某个地方不动，也不受滚动条拖动影响。（artDialog支持IE6 fixed）</TD></TR>
+		<TR class=odd sizcache="27" sizset="90">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" rowSpan=2 sizcache="27" sizset="90"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#follow">follow</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">HTMLElement</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>让对话框依附在指定元素附近。<BR style="MARGIN-BOTTOM: 1.8em">可传入元素ID名称，注意ID名称需要以“#”号作为前缀</TD></TR>
+		<TR class=odd>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD></TR>
+		<TR sizcache="27" sizset="91">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" rowSpan=2 sizcache="27" sizset="91"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#left">left</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Number</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>'50%'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" rowSpan=2>相对于可视区域的X轴的坐标。<BR style="MARGIN-BOTTOM: 1.8em">可以使用'0%' ~ '100%'作为相对坐标，如果浏览器窗口大小被改变其也会进行相应的调整</TD></TR>
+		<TR>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">String</TD></TR>
+		<TR class=odd sizcache="27" sizset="92">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" rowSpan=2 sizcache="27" sizset="92"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#top">top</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Number</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>'38.2%'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>相对于可视区域的Y轴的坐标。<BR style="MARGIN-BOTTOM: 1.8em">可以使用'0%' ~ '100%'作为相对坐标，如果浏览器窗口大小被改变其也会进行相应的调整</TD></TR>
+		<TR class=odd>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD></TR>
+		<TR>
+		<TH class=separate style="BORDER-TOP: rgb(225,241,150) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(174,205,27) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(174,205,27) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(243,250,214) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(243,247,253)" colSpan=4>视觉</TH></TR>
+		<TR sizcache="27" sizset="93">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="93"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#lock">lock</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Boolean</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">false</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">开启锁屏。<BR style="MARGIN-BOTTOM: 1.8em">中断用户对话框之外的交互，用于显示非常重要的操作/消息，所以不建议频繁使用它，它会让操作变得繁琐</TD></TR>
+		<TR class=odd sizcache="27" sizset="94">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="94"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#background">background</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">'#000'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">锁屏遮罩颜色</TD></TR>
+		<TR sizcache="27" sizset="95">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="95"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#opacity">opacity</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Number</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">0.7</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">锁屏遮罩透明度</TD></TR>
+		<TR class=odd sizcache="27" sizset="96">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="96"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#icon">icon</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">定义消息图标。可定义“skins/icons/”目录下的图标名作为参数名（不包含后缀名）</TD></TR>
+		<TR sizcache="27" sizset="97">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="97"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#padding">padding</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">'20px 25px'</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">内容与边界填充边距(即css padding)</TD></TR>
+		<TR>
+		<TH class=separate style="BORDER-TOP: rgb(225,241,150) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(174,205,27) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(174,205,27) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(243,250,214) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(243,247,253)" colSpan=4>交互</TH></TR>
+		<TR sizcache="27" sizset="98">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="98"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#time">time</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Number</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">设置对话框显示时间。以秒为单位</TD></TR>
+		<TR class=odd sizcache="27" sizset="99">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="99"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#resize">resize</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Boolean</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">true</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">是否允许用户调节尺寸</TD></TR>
+		<TR sizcache="27" sizset="100">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="100"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#drag">drag</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Boolean</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">true</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">是否允许用户拖动位置</TD></TR>
+		<TR class=odd sizcache="27" sizset="101">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="101"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#esc">esc</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Boolean</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">true</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">是否允许用户按Esc键关闭对话框</TD></TR>
+		<TR>
+		<TH class=separate style="BORDER-TOP: rgb(225,241,150) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(174,205,27) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(174,205,27) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(243,250,214) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(243,247,253)" colSpan=4>高级</TH></TR>
+		<TR class=odd sizcache="27" sizset="102">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" rowSpan=2 sizcache="27" sizset="102"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#id">id</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">String</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" rowSpan=2>设定对话框唯一标识。用途：<BR style="MARGIN-BOTTOM: 1.8em">1、防止重复弹出<BR style="MARGIN-BOTTOM: 1.8em">2、定义id后可以使用art.dialog.list[youID]获取扩展方法</TD></TR>
+		<TR class=odd>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Number</TD></TR>
+		<TR sizcache="27" sizset="103">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="103"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#zIndex">zIndex</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Number</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">1987</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">重置全局zIndex初始值。<BR style="MARGIN-BOTTOM: 1.8em">用来改变对话框叠加高度。比如有时候配合外部浮动层UI组件，但是它们可能默认zIndex没有artDialog高，导致无法浮动到artDialog之上，这个时候你就可以给对话框指定一个较小的zIndex值。<BR style="MARGIN-BOTTOM: 1.8em">请注意这是一个会影响到全局的配置，后续出现的对话框叠加高度将重新按此累加。</TD></TR>
+		<TR class=odd sizcache="27" sizset="104">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="104"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#init">init</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Function</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">对话框弹出后执行的函数</TD></TR>
+		<TR sizcache="27" sizset="105">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" sizcache="27" sizset="105"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#close">close</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">Function</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">null</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)">对话框关闭前执行的函数。函数如果返回false将阻止对话框关闭。<BR style="MARGIN-BOTTOM: 1.8em">请注意这不是关闭按钮的回调函数，无论何种方式关闭对话框，close都将执行。</TD></TR>
+		<TR class=odd sizcache="27" sizset="106">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)" sizcache="27" sizset="106"><A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#show">show</A></TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">Boolean</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">true</TD>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)">是否显示对话框</TD></TR></TBODY></TABLE>
+		<H2 id=API style="FONT-SIZE: 1.4em; HEIGHT: 2em; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(255,255,255); PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; PADDING-LEFT: 0px; CLEAR: both; MARGIN: 0px 0px 10px; LINE-HEIGHT: 2em; PADDING-RIGHT: 0px" sizcache="27" sizset="107"><A name=t0></A>扩展方法</H2>
+		<TABLE class="zebra " sizcache="22" sizset="0">
+		<COLGROUP>
+		<COL class=col1>
+		<COL class=col2>
+		<COL class=col3></COLGROUP>
+		<THEAD>
+		<TR>
+		<TH class=name style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">名称</TH>
+		<TH class=note style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: center; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)" colSpan=3>描述</TH></TR></THEAD>
+		<TBODY sizcache="22" sizset="0">
+		<TR>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">close()</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" colSpan=3>关闭对话框</TD></TR>
+		<TR class=odd>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)">show()</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" colSpan=3>显示对话框</TD></TR>
+		<TR>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">hide()</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" colSpan=3>隐藏对话框</TD></TR>
+		<TR>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">title(value)</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" colSpan=3>写入标题。无参数则返回标题容器元素</TD></TR>
+		<TR>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">content(value)</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" colSpan=3>向消息容器中写入内容。参数支持字符串、DOM对象，无参数则返回内容容器元素</TD></TR>
+		<TR class=odd sizcache="22" sizset="0">
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)">button(arguments)</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" colSpan=3 sizcache="22" sizset="0">插入一个自定义按钮。<BR style="MARGIN-BOTTOM: 1.8em">配置参数成员： 
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">name —— 按钮名称</DIV>
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">callback —— 按下后执行的函数</DIV>
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">focus —— 是否聚焦点</DIV>
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">disabled —— 是否标记按钮为不可用状态（后续可使用扩展方法让其恢复可用状态）</DIV><BR style="MARGIN-BOTTOM: 1.8em">
+		<DIV style="PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">示例：</DIV><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: 0px; MARGIN-TOP: 10px; PADDING-RIGHT: 1em">button({
+		    name: '登录',
+		    focus: true,
+		    callback: function () {}
+		}, {
+		    name: '取消'
+		})</PRE></TD></TR>
+		<TR>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">follow(element)</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" colSpan=3>让对话框吸附到指定元素附近</TD></TR>
+		<TR class=odd>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)">position(left, top)</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" colSpan=3>重新定位对话框</TD></TR>
+		<TR>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">size(width, height)</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" colSpan=3>重新设定对话框大小</TD></TR>
+		<TR class=odd>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)">lock()</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" colSpan=3>锁屏</TD></TR>
+		<TR>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(208,219,238)">unlock()</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(224,232,245)" colSpan=3>解锁</TD></TR>
+		<TR class=odd>
+		<TH style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial !important; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: middle; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 5px; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(219,228,244)">time(val)</TH>
+		<TD style="BORDER-TOP: rgb(248,248,248) 1px solid; FONT-FAMILY: Consolas,'Courier New',Courier,monospace; BORDER-RIGHT: rgb(171,184,206) 1px solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: rgb(171,184,206) 1px solid; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; PADDING-LEFT: 4px; MARGIN: 0px; BORDER-LEFT: rgb(248,248,248) 1px solid; LINE-HEIGHT: 18px; PADDING-RIGHT: 4px; BACKGROUND-COLOR: rgb(230,238,249)" colSpan=3>定时关闭（单位秒）</TD></TR></TBODY></TABLE>
+		<H2 style="FONT-SIZE: 1.4em; HEIGHT: 2em; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(255,255,255); PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; PADDING-LEFT: 0px; CLEAR: both; MARGIN: 0px 0px 10px; LINE-HEIGHT: 2em; PADDING-RIGHT: 0px" sizcache="27" sizset="108"><A name=t1></A>配置参数演示</H2>
+		<H3 id=content style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="109"><A name=t2></A>内容 [content]</H3>
+		<H4 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 5px 0px 0px; PADDING-RIGHT: 0px; TEXT-INDENT: 1em" sizcache="27" sizset="110"><A name=t3></A>1. 传入字符串</H4>
+		<DIV id=demoCode_content style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="1"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'我支持HTML'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({content:'我支持HTML'});" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_content>运行»</BUTTON></P>
+		
+		<H4 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 5px 0px 0px; PADDING-RIGHT: 0px; TEXT-INDENT: 1em" sizcache="27" sizset="111"><A name=t4></A>2. 传入HTMLElement</H4>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">备注：1、元素不是复制而是完整移动到对话框中，所以原有的事件与属性都将会保留 2、如果隐藏元素被传入到对话框，会设置display:block属性显示该元素 3、对话框关闭的时候元素将恢复到原来在页面的位置，style display属性也将恢复</P>
+		<DIV id=demoCode_content_DOM style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="2"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    content: document.getElementById(<SPAN class=string style="COLOR: rgb(0,130,0)">'demoCode_content_DOM'</SPAN>),
+		    id: <SPAN class=string style="COLOR: rgb(0,130,0)">'EF893L'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({content: document.getElementById('EF893LBUTTON'),id:'EF893L'});" id="EF893LBUTTON" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_content_DOM>运行»</BUTTON></P>
+		
+		<H3 id=title style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="112"><A name=t5></A>标题 [title]</H3>
+		<DIV id=demoCode_title style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="3"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    title: <SPAN class=string style="COLOR: rgb(0,130,0)">'hello world!'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({title: 'hello world!'});" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_title>运行»</BUTTON></P>
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="113"><A name=t6></A>确定取消按钮 [ok &amp; cancel]<SPAN id=ok style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN><SPAN id=cancel style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN><SPAN id=okText style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN><SPAN id=cancelText style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN></H3>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">备注：回调函数this指向扩展接口，如果返回false将阻止对话框关闭</P>
+		<DIV id=demoCode_yes_no style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="4"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'如果定义了回调函数才会出现相应的按钮'</SPAN>,
+		    ok: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		    	<SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">this</SPAN>.title(<SPAN class=string style="COLOR: rgb(0,130,0)">'3秒后自动关闭'</SPAN>).time(<SPAN class=number style="COLOR: rgb(181,0,0)">3</SPAN>);
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">return</SPAN> <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>;
+		    },
+		    cancelVal: <SPAN class=string style="COLOR: rgb(0,130,0)">'关闭'</SPAN>,
+		    cancel: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN> <SPAN class=comment style="COLOR: rgb(119,119,119)">//为true等价于function(){}</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+				    content: '如果定义了回调函数才会出现相应的按钮',
+				    ok: function () {
+					this.title('3秒后自动关闭').time(3);
+					return false;
+				    },
+				    cancelVal: '关闭',
+				    cancel: true //为true等价于function(){}
+				});" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_yes_no>运行»</BUTTON></P>
+		
+		<H3 id=button style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="114"><A name=t7></A>自定义按钮 [button]</H3>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">备注：回调函数this指向扩展接口，如果返回false将阻止对话框关闭；button参数对应的扩展方法名称也是"button"</P>
+		<DIV id=demoCode_button style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="5"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    id: <SPAN class=string style="COLOR: rgb(0,130,0)">'testID'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'hello world!'</SPAN>,
+		    button: [
+		        {
+		            name: <SPAN class=string style="COLOR: rgb(0,130,0)">'同意'</SPAN>,
+		            callback: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		                <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">this</SPAN>.content(<SPAN class=string style="COLOR: rgb(0,130,0)">'你同意了'</SPAN>).time(<SPAN class=number style="COLOR: rgb(181,0,0)">2</SPAN>);
+		                <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">return</SPAN> <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>;
+		            },
+		            focus: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>
+		        },
+		        {
+		            name: <SPAN class=string style="COLOR: rgb(0,130,0)">'不同意'</SPAN>,
+		            callback: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		                alert(<SPAN class=string style="COLOR: rgb(0,130,0)">'你不同意'</SPAN>)
+		            }
+		        },
+		        {
+		            name: <SPAN class=string style="COLOR: rgb(0,130,0)">'无效按钮'</SPAN>,
+		            disabled: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>
+		        },
+		        {
+		            name: <SPAN class=string style="COLOR: rgb(0,130,0)">'关闭我'</SPAN>
+		        }
+		    ]
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    id: 'testID',
+					    content: 'hello world!',
+					    button: [
+					        {
+					            name: '同意',
+					            callback: function () {
+					                this.content('你同意了').time(2);
+					                return false;
+					            },
+					            focus: true
+					        },
+					        {
+					            name: '不同意',
+					            callback: function () {
+					                alert('你不同意')
+					            }
+					        },
+					        {
+					            name: '无效按钮',
+					            disabled: true
+					        },
+					        {
+					            name: '关闭我'
+					        }
+					    ]
+					}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_button>运行»</BUTTON></P>
+		
+		
+		<H3 id=time style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="115"><A name=t8></A>定时关闭的消息 [time]</H3>
+		<DIV id=demoCode_time style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="6"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    time: <SPAN class=number style="COLOR: rgb(181,0,0)">2</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'两秒后关闭'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    time: 2,
+					    content: '两秒后关闭'
+					}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_time>运行»</BUTTON></P>
+		
+		
+		<H3 id=id style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="116"><A name=t9></A>防止重复弹出 [id]</H3>
+		<DIV id=demoCode_id style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="7"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    id: <SPAN class=string style="COLOR: rgb(0,130,0)">'testID2'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'再次点击运行看看'</SPAN>
+		});
+		art.dialog({id: <SPAN class=string style="COLOR: rgb(0,130,0)">'testID2'</SPAN>}).title(<SPAN class=string style="COLOR: rgb(0,130,0)">'3秒后关闭'</SPAN>).time(<SPAN class=number style="COLOR: rgb(181,0,0)">3</SPAN>);
+		</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    id: 'testID2',
+					    content: '再次点击运行看看'
+					});
+					art.dialog({id: 'testID2'}).title('3秒后关闭').time(3); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_id>运行»</BUTTON></P>
+		
+		
+		<H3 id=icon style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="117"><A name=t10></A>定义消息图标 [icon]</H3>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">请查看skin/icons目录下的图标</P>
+		<DIV id=demoCode_icon style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="8"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    icon: <SPAN class=string style="COLOR: rgb(0,130,0)">'succeed'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'我可以定义消息图标哦'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+				    icon: 'succeed',
+				    content: '我可以定义消息图标哦'
+				});" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_icon>运行»</BUTTON></P>
+		
+		<H3 id=padding style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="118"><A name=t11></A>内容与边界填充边距 [padding]</H3>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">有时候并不需要默认的内容填充边距，如展示图片与视频</P>
+		<DIV id=demoCode_padding style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="9"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    padding: <SPAN class=number style="COLOR: rgb(181,0,0)">0</SPAN>,
+		    title: <SPAN class=string style="COLOR: rgb(0,130,0)">'照片'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'&lt;img src="./images/photo.jpg" width="379" height="500" /&gt;'</SPAN>,
+		    lock: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<script type="text/javascript">
+			function testDialogPhoto() {
+				art.dialog({
+				    padding: 0,
+				    title: '照片',
+				    content: '<img src=\"../resource/plugins/temp/temp.jpg\" width=\"379\" height=\"500\" />',
+				    lock: true
+				});
+			}
+			</script>
+			<BUTTON onclick="testDialogPhoto();" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_padding>运行»</BUTTON></P>
+		
+		<H3 id=lock style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="119"><A name=t12></A>锁屏 [lock &amp; background &amp; opacity]<SPAN id=background style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN><SPAN id=opacity style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN><SPAN id=duration style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN></H3>
+		<DIV id=demoCode_lock style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="10"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    lock: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>,
+		    background: <SPAN class=string style="COLOR: rgb(0,130,0)">'#600'</SPAN>, <SPAN class=comment style="COLOR: rgb(119,119,119)">// 背景色</SPAN>
+		    opacity: <SPAN class=number style="COLOR: rgb(181,0,0)">0.87</SPAN>,	<SPAN class=comment style="COLOR: rgb(119,119,119)">// 透明度</SPAN>
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'中断用户在对话框以外的交互，展示重要操作与消息'</SPAN>,
+		    icon: <SPAN class=string style="COLOR: rgb(0,130,0)">'error'</SPAN>,
+		    ok: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		        art.dialog({content: <SPAN class=string style="COLOR: rgb(0,130,0)">'再来一个锁屏'</SPAN>, lock: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>});
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">return</SPAN> <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>;
+		    },
+		    cancel: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    lock: true,
+					    background: '#600', // 背景色
+					    opacity: 0.87,	// 透明度
+					    content: '中断用户在对话框以外的交互，展示重要操作与消息',
+					    icon: 'error',
+					    ok: function () {
+					        art.dialog({content: '再来一个锁屏', lock: true});
+					        return false;
+					    },
+					    cancel: true
+					}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_lock>运行»</BUTTON></P>
+		
+		
+		<H3 id=follow style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="120"><A name=t13></A>跟随元素 [follw]</H3>
+		<H4 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 5px 0px 0px; PADDING-RIGHT: 0px; TEXT-INDENT: 1em" sizcache="27" sizset="121"><A name=t14></A>1、标准形式</H4>
+		<DIV id=demoCode_follow style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="11"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    follow: document.getElementById(<SPAN class=string style="COLOR: rgb(0,130,0)">'followTestBtn'</SPAN>),
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'让对话框跟着某个元素，一个元素同时只能出现一个对话框'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    follow: document.getElementById('followTestBtn'),
+					    content: '让对话框跟着某个元素，一个元素同时只能出现一个对话框'
+					}); " id=followTestBtn title=id=followTestBtn class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_follow>运行»</BUTTON></P>
+		
+		
+		<H4 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 5px 0px 0px; PADDING-RIGHT: 0px; TEXT-INDENT: 1em" sizcache="27" sizset="122"><A name=t15></A>2、使用简写形式 （已经绑定onclick事件，注意此返回值不再是对话框扩展方法）</H4>
+		<DIV id=demoCode_follow_fn style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="12"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art(<SPAN class=string style="COLOR: rgb(0,130,0)">'#demoCode_follow_a'</SPAN>).dialog({
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'让对话框跟着某个元素，一个元素同时只能出现一个对话框'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px" sizcache="27" sizset="123">
+			<A id=demoCode_follow_a style="COLOR: rgb(33,79,163); MARGIN-RIGHT: 10px" href="#">元素触发</A>&nbsp;
+			<BUTTON onclick="art('#demoCode_follow_a').dialog({
+					    content: '让对话框跟着某个元素，一个元素同时只能出现一个对话框'
+					}); " id=followTestBtn title=id=followTestBtn class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_follow_fn>运行»</BUTTON></P>
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="124"><A name=t16></A>自定义坐标 [left &amp; top]<SPAN id=left style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN><SPAN id=top style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN></H3>
+		<DIV id=demoCode_position style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="13"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    left: <SPAN class=number style="COLOR: rgb(181,0,0)">100</SPAN>,
+		    top: <SPAN class=string style="COLOR: rgb(0,130,0)">'60%'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'我改变坐标了'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    left: 100,
+					    top: '60%',
+					    content: '我改变坐标了'
+					}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_position>运行»</BUTTON></P>
+		
+		<H4 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 5px 0px 0px; PADDING-RIGHT: 0px; TEXT-INDENT: 1em" sizcache="27" sizset="125"><A name=t17></A>创建一个右下角浮动的消息窗口</H4>
+		<DIV id=demoCode_position2 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="14"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    id: <SPAN class=string style="COLOR: rgb(0,130,0)">'msg'</SPAN>,
+		    title: <SPAN class=string style="COLOR: rgb(0,130,0)">'公告'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'hello world!'</SPAN>,
+		    width: <SPAN class=number style="COLOR: rgb(181,0,0)">320</SPAN>,
+		    height: <SPAN class=number style="COLOR: rgb(181,0,0)">240</SPAN>,
+		    left: <SPAN class=string style="COLOR: rgb(0,130,0)">'100%'</SPAN>,
+		    top: <SPAN class=string style="COLOR: rgb(0,130,0)">'100%'</SPAN>,
+		    fixed: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>,
+		    drag: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>,
+		    resize: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>
+		})</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+				    id: 'msg',
+				    title: '公告',
+				    content: 'hello world!',
+				    width: 320,
+				    height: 240,
+				    left: '100%',
+				    top: '100%',
+				    fixed: true,
+				    drag: false,
+				    resize: false
+				}) " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_position2>运行»</BUTTON></P>
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="126"><A name=t18></A>设置大小 [width &amp; height]<SPAN id=width style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN><SPAN id=height style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN></H3>
+		<DIV id=demoCode_size style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="15"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    width: <SPAN class=string style="COLOR: rgb(0,130,0)">'20em'</SPAN>,
+		    height: <SPAN class=number style="COLOR: rgb(181,0,0)">55</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'尺寸可以带单位'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    width: '20em',
+					    height: 55,
+					    content: '尺寸可以带单位'
+					});" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_size>运行»</BUTTON></P>
+		
+		<H4 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 5px 0px 0px; PADDING-RIGHT: 0px; TEXT-INDENT: 1em" sizcache="27" sizset="127"><A name=t19></A>创建一个全屏对话框</H4>
+		<DIV id=demoCode_size_full style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="16"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    width: <SPAN class=string style="COLOR: rgb(0,130,0)">'100%'</SPAN>,
+		    height: <SPAN class=string style="COLOR: rgb(0,130,0)">'100%'</SPAN>,
+		    left: <SPAN class=string style="COLOR: rgb(0,130,0)">'0%'</SPAN>,
+		    top: <SPAN class=string style="COLOR: rgb(0,130,0)">'0%'</SPAN>,
+		    fixed: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>,
+		    resize: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>,
+		    drag: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>
+		})</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<script type="text/javascript">
+			function testDialogWin() {
+				art.dialog({
+				    width: $(document).width(),
+				    height: $(document).height(),
+				    left: '0%',
+				    top: '0%',
+				    fixed: true,
+				    resize: false,
+				    drag: false
+				});
+			}
+			</script>
+			<BUTTON onclick="testDialogWin();" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_size_full>运行»</BUTTON></P>
+		
+		<H3 id=fixed style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="128"><A name=t20></A>静止定位 [fixed]</H3>
+		<DIV id=demoCode_fixed style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="17"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    fixed: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'请拖动滚动条查看'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    fixed: true,
+					    content: '请拖动滚动条查看'
+					}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_fixed>运行»</BUTTON></P>
+		
+		
+		<H3 id=drag style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="129"><A name=t21></A>不许拖拽 [drag &amp; resize]<SPAN id=resize style="FONT-WEIGHT: normal; COLOR: rgb(153,153,153)"></SPAN></H3>
+		<DIV id=demoCode_drag style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="18"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    drag: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>,
+		    resize: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'禁止拖拽'</SPAN>
+		});</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    drag: false,
+					    resize: false,
+					    content: '禁止拖拽'
+					}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_drag>运行»</BUTTON></P>
+		
+		
+		<H2 style="FONT-SIZE: 1.4em; HEIGHT: 2em; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(255,255,255); PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; PADDING-LEFT: 0px; CLEAR: both; MARGIN: 0px 0px 10px; LINE-HEIGHT: 2em; PADDING-RIGHT: 0px" sizcache="27" sizset="130"><A name=t22></A>扩展方法演示</H2>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">特别说明：扩展方法支持链式操作</P>
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="131"><A name=t23></A>获取扩展方法一：直接引用返回</H3>
+		<DIV id=demoCode_api_1 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="19"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px"><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> dialog = art.dialog({
+		    title: <SPAN class=string style="COLOR: rgb(0,130,0)">'我是对话框'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'我是初始化的内容'</SPAN>
+		});
+		dialog.content(<SPAN class=string style="COLOR: rgb(0,130,0)">'对话框内容被扩展方法改变了'</SPAN>).title(<SPAN class=string style="COLOR: rgb(0,130,0)">'提示'</SPAN>);
+		      </CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="var dialog = art.dialog({
+					    title: '我是对话框',
+					    content: '我是初始化的内容'
+					});
+					dialog.content('对话框内容被扩展方法改变了').title('提示');" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_1>运行»</BUTTON></P>
+		
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="132"><A name=t24></A>获取扩展方法二：通过对话框ID</H3>
+		<DIV id=demoCode_api_2 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="20"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    id: <SPAN class=string style="COLOR: rgb(0,130,0)">'KDf435'</SPAN>,
+		    title: <SPAN class=string style="COLOR: rgb(0,130,0)">'警告'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'我是初始化的内容'</SPAN>
+		});
+		art.dialog.list[<SPAN class=string style="COLOR: rgb(0,130,0)">'KDf435'</SPAN>].content(<SPAN class=string style="COLOR: rgb(0,130,0)">'对话框内容被扩展方法改变了'</SPAN>);
+		      </CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    id: 'KDf435',
+					    title: '警告',
+					    content: '我是初始化的内容'
+					});
+					art.dialog.list['KDf435'].content('对话框内容被扩展方法改变了'); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_2>运行»</BUTTON></P>
+		
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="133"><A name=t25></A>获取扩展方法三：回调函数中this</H3>
+		<DIV id=demoCode_api_3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="21"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    title: <SPAN class=string style="COLOR: rgb(0,130,0)">'警告'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'我是初始化的内容'</SPAN>,
+		    ok: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">this</SPAN>.content(<SPAN class=string style="COLOR: rgb(0,130,0)">'你点了确定按钮'</SPAN>).lock();
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">return</SPAN> <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>;
+		    },
+		    init: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">this</SPAN>.content(<SPAN class=string style="COLOR: rgb(0,130,0)">'对话框内容被扩展方法改变了'</SPAN>);
+		    }
+		});
+		      </CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    title: '警告',
+					    content: '我是初始化的内容',
+					    ok: function () {
+					        this.content('你点了确定按钮').lock();
+					        return false;
+					    },
+					    init: function () {
+					        this.content('对话框内容被扩展方法改变了');
+					    }
+					}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_3>运行»</BUTTON></P>
+		
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="134"><A name=t26></A>关闭页面所有对话框</H3>
+		<DIV id=demoCode_api_4 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="22"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px"><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> list = art.dialog.list;
+		<SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">for</SPAN> (<SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> i <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">in</SPAN> list) {
+		    list[i].close();
+		};
+		      </CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="var list = art.dialog.list;
+					for (var i in list) {
+					    list[i].close();
+					}; " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_4>运行»</BUTTON></P>
+		
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="135"><A name=t27></A>按钮接口演示</H3>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">备注：回调函数如果返回false将阻止对话框关闭</P>
+		<DIV id=demoCode_api_button style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="23"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px"><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> dialog = art.dialog({
+		    title: <SPAN class=string style="COLOR: rgb(0,130,0)">'警告'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'点击管理按钮将让删除按钮可用'</SPAN>,
+		    width: <SPAN class=string style="COLOR: rgb(0,130,0)">'20em'</SPAN>,
+		    button: [{
+		    	name: <SPAN class=string style="COLOR: rgb(0,130,0)">'管理'</SPAN>,
+		        callback: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		            <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">this</SPAN>
+		            .content(<SPAN class=string style="COLOR: rgb(0,130,0)">'我更改了删除按钮'</SPAN>)
+		            .button({
+		                name: <SPAN class=string style="COLOR: rgb(0,130,0)">'删除'</SPAN>,
+		                disabled: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>
+		            })
+		            .lock();
+		            <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">return</SPAN> <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>;
+		        },
+		        focus: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>
+		    }]
+		});
+		dialog.button(
+		    {
+		        name: <SPAN class=string style="COLOR: rgb(0,130,0)">'删除'</SPAN>,
+		        callback: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		            alert(<SPAN class=string style="COLOR: rgb(0,130,0)">'delect'</SPAN>)
+		        },
+		        disabled: <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>
+		    }
+		)
+		      </CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="var dialog = art.dialog({
+						    title: '警告',
+						    content: '点击管理按钮将让删除按钮可用',
+						    width: '20em',
+						    button: [{
+						    	name: '管理',
+						        callback: function () {
+						            this
+						            .content('我更改了删除按钮')
+						            .button({
+						                name: '删除',
+						                disabled: false
+						            })
+						            .lock();
+						            return false;
+						        },
+						        focus: true
+						    }]
+						});
+						dialog.button(
+						    {
+						        name: '删除',
+						        callback: function () {
+						            alert('delect')
+						        },
+						        disabled: true
+						    }
+						) " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_button>运行»</BUTTON></P>
+		
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="136"><A name=t28></A>标题倒计时</H3>
+		<DIV id=demoCode_api_title style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="24"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px"><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> timer;
+		art.dialog({
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'时间越来越少，越来越少..'</SPAN>,
+		    init: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		    	<SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> that = <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">this</SPAN>, i = <SPAN class=number style="COLOR: rgb(181,0,0)">5</SPAN>;
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> fn = <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		            that.title(i + <SPAN class=string style="COLOR: rgb(0,130,0)">'秒后关闭'</SPAN>);
+		            !i &amp;&amp; that.close();
+		            i --;
+		        };
+		        timer = setInterval(fn, <SPAN class=number style="COLOR: rgb(181,0,0)">1000</SPAN>);
+		        fn();
+		    },
+		    close: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		    	clearInterval(timer);
+		    }
+		}).show();</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="var timer;
+								art.dialog({
+								    content: '时间越来越少，越来越少..',
+								    init: function () {
+								    	var that = this, i = 5;
+								        var fn = function () {
+								            that.title(i + '秒后关闭');
+								            !i && that.close();
+								            i --;
+								        };
+								        timer = setInterval(fn, 1000);
+								        fn();
+								    },
+								    close: function () {
+								    	clearInterval(timer);
+								    }
+								}).show();" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_title>运行»</BUTTON></P>
+		
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="137"><A name=t29></A>关闭不删除内容</H3>
+		<DIV id=demoCode_api_fn style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="25"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">art.dialog({
+		    id: <SPAN class=string style="COLOR: rgb(0,130,0)">'show-hide'</SPAN>,
+		    content: <SPAN class=string style="COLOR: rgb(0,130,0)">'关闭后阻止对话框被删除，只隐藏对话框'</SPAN>,
+		    close: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">this</SPAN>.hide();
+		        <SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">return</SPAN> <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>;
+		    }
+		}).show();</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="art.dialog({
+					    id: 'show-hide',
+					    content: '关闭后阻止对话框被删除，只隐藏对话框',
+					    close: function () {
+					        this.hide();
+					        return false;
+					    }
+					}).show();" class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_fn>运行»</BUTTON></P>
+		
+		
+		<H3 style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(0,51,0); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="27" sizset="138"><A name=t30></A>AJAX高级应用：执行HTML片段中特殊script标签</H3>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">HTML片段中的<SPAN style="COLOR: rgb(0,51,204); PADDING-BOTTOM: 1px; PADDING-TOP: 1px; PADDING-LEFT: 1px; MARGIN: 0px 3px; PADDING-RIGHT: 1px; BACKGROUND-COLOR: rgb(248,248,248)">&lt;script type="<SPAN style="COLOR: rgb(0,153,0)">text/dialog</SPAN>"&gt;&lt;/script&gt;</SPAN>标签包裹的javascript将会在artDialog内部执行，其this指向对话框扩展方法，这样可以进一步实现消息内容模块化。</P>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px" sizcache="27" sizset="139">(本例子使用了AJAX，需要在服务器上运行。可打开&nbsp;<A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/ajaxContent/login.html" target=_blank>./ajaxContent/login.html</A>&nbsp;查看源码中的自定义脚本)</P>
+		<DIV id=demoCode_api_content style="FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px" sizcache="22" sizset="26"><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(248,248,248)"><CODE class=javascript style="FONT-SIZE: 12px; COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px"><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">var</SPAN> dialog = art.dialog({id: <SPAN class=string style="COLOR: rgb(0,130,0)">'N3690'</SPAN>,title: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>});
+		
+		<SPAN class=comment style="COLOR: rgb(119,119,119)">// jQuery ajax   </SPAN>
+		$.ajax({
+		    url: <SPAN class=string style="COLOR: rgb(0,130,0)">'./ajaxContent/login.html'</SPAN>,
+		    success: <SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>(data)</SPAN> {</SPAN>
+		        dialog.content(data);
+		    },
+		    cache: <SPAN class=literal style="COLOR: rgb(181,0,0)">false</SPAN>
+		});
+		</CODE></PRE></DIV>
+		<P class=buttons style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; TEXT-ALIGN: right; PADDING-TOP: 10px; MARGIN-TOP: 0px">
+			<BUTTON onclick="var dialog = art.dialog({id: 'N3690',title: false}); 
+						$.ajax({
+						    url: 'test-login.html',
+						    success: function (data) {
+						        dialog.content(data);
+						    },
+						    cache: false
+						}); " class=runCode style="FONT-SIZE: 12px; BORDER-TOP: rgb(204,204,204) 1px solid; FONT-FAMILY: inherit; BORDER-RIGHT: rgb(204,204,204) 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: rgb(204,204,204) 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 8px; MARGIN: 0px; BORDER-LEFT: rgb(204,204,204) 1px solid; PADDING-RIGHT: 8px; BACKGROUND-COLOR: rgb(248,248,248)" name=demoCode_api_content>运行»</BUTTON></P>
+		
+		<H2 id=plugin style="FONT-SIZE: 1.4em; HEIGHT: 2em; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(255,255,255); PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; PADDING-LEFT: 0px; CLEAR: both; MARGIN: 0px 0px 10px; LINE-HEIGHT: 2em; PADDING-RIGHT: 0px" sizcache="27" sizset="140"><A name=t31></A>插件：iframe应用工具</H2>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px" sizcache="27" sizset="141">请新打开新页面查看范例：<A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/iframeTop.html" target=_blank>./iframeTop.html</A></P>
+		<H2 id=in style="FONT-SIZE: 1.4em; HEIGHT: 2em; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(255,255,255); PADDING-BOTTOM: 0px; TEXT-ALIGN: center; PADDING-TOP: 0px; PADDING-LEFT: 0px; CLEAR: both; MARGIN: 0px 0px 10px; LINE-HEIGHT: 2em; PADDING-RIGHT: 0px" sizcache="27" sizset="142"><A name=t32></A>应用到你的项目</H2>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">在页面head引入artDialog，其中skin参数表示对话框使用的风格文件(如果项目采用jQuery作为框架，则引用jQuery artDialog版本)。</P><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; COLOR: rgb(102,102,102); PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(255,255,255)"><CODE style="COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">&lt;script src="artDialog/artDialog.js?skin=default"&gt;&lt;/script&gt;</CODE></PRE>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px" sizcache="27" sizset="143">如果需要在iframe应用下提供&nbsp;<A style="COLOR: rgb(33,79,163); TEXT-DECORATION: none" href="http://www.planeart.cn/demo/artDialog/_doc/API.html#plugin">更好的支持</A>&nbsp;，可加载插件：</P><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; COLOR: rgb(102,102,102); PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(255,255,255)"><CODE style="COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">&lt;script src="artDialog/plugins/iframeTools.js"&gt;&lt;/script&gt;</CODE></PRE>
+		<P style="MARGIN-BOTTOM: 0px; FONT-SIZE: 14px; FONT-FAMILY: 'Microsoft Yahei',Tahoma,Arial; COLOR: rgb(102,102,102); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; MARGIN-TOP: 0px">配置全局默认参数(可选):</P><PRE style="MARGIN-BOTTOM: 10px; BORDER-TOP: rgb(243,243,243) 1px solid; BORDER-RIGHT: rgb(243,243,243) 1px solid; BORDER-BOTTOM: rgb(243,243,243) 1px solid; COLOR: rgb(102,102,102); PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: rgb(243,243,243) 1px solid; MARGIN-TOP: 10px; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(255,255,255)"><CODE class=javascript style="COLOR: black; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px">(<SPAN class=function><SPAN class=keyword style="FONT-WEIGHT: bold; COLOR: navy">function</SPAN> <SPAN class=params>(config)</SPAN> {</SPAN>
+		    config[<SPAN class=string style="COLOR: rgb(0,130,0)">'lock'</SPAN>] = <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>;
+		    config[<SPAN class=string style="COLOR: rgb(0,130,0)">'fixed'</SPAN>] = <SPAN class=literal style="COLOR: rgb(181,0,0)">true</SPAN>;
+		    config[<SPAN class=string style="COLOR: rgb(0,130,0)">'okVal'</SPAN>] = <SPAN class=string style="COLOR: rgb(0,130,0)">'Ok'</SPAN>;
+		    config[<SPAN class=string style="COLOR: rgb(0,130,0)">'cancelVal'</SPAN>] = <SPAN class=string style="COLOR: rgb(0,130,0)">'Cancel'</SPAN>;
+		    <SPAN class=comment style="COLOR: rgb(119,119,119)">// [more..]</SPAN>
+		})(art.dialog.defaults);</CODE></PRE>
+	</DIV>
+	
+  </body>
+</html>

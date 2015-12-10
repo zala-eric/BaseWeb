@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>iframeTools-api.html</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../resource/plugins/artDialog/style.css" />
+	<script language="javascript" type="text/javascript" src="../resource/js/jquery-1.10.2.min.js"></script>
+	<script language="javascript" type="text/javascript" src="../resource/plugins/artDialog/jquery.artDialog.js"></script>
+	<script language="javascript" type="text/javascript" src="../resource/plugins/artDialog/plugins/iframeTools.js"></script>
+  	<style>
+  		body {font: 14px/1.11 'Microsoft Yahei'}
+		PRE {BORDER-TOP: #f3f3f3 1px solid; BORDER-RIGHT: #f3f3f3 1px solid; BORDER-BOTTOM: #f3f3f3 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; PADDING-LEFT: 1em; BORDER-LEFT: #f3f3f3 1px solid; PADDING-RIGHT: 1em; BACKGROUND-COLOR: #f8f8f8; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px}
+		PRE CODE {COLOR: black}
+		PRE .ruby .subst {COLOR: black}
+		PRE .lisp .title {COLOR: black}
+		PRE .string {COLOR: #008200}
+		PRE .title {COLOR: #008200}
+		PRE .parent {COLOR: #008200}
+		PRE .tag .attribute .value {COLOR: #008200}
+		PRE .rules .value {COLOR: #008200}
+		PRE .rules .value .number {COLOR: #008200}
+		PRE .preprocessor {COLOR: #008200}
+		PRE .ruby .symbol {COLOR: #008200}
+		PRE .ruby .symbol .string {COLOR: #008200}
+		PRE .ruby .symbol .keyword {COLOR: #008200}
+		PRE .ruby .symbol .keymethods {COLOR: #008200}
+		PRE .instancevar {COLOR: #008200}
+		PRE .aggregate {COLOR: #008200}
+		PRE .template_tag {COLOR: #008200}
+		PRE .django .variable {COLOR: #008200}
+		PRE .smalltalk .class {COLOR: #008200}
+		PRE .addition {COLOR: #008200}
+		PRE .flow {COLOR: #008200}
+		PRE .stream {COLOR: #008200}
+		PRE .bash .variable {COLOR: #008200}
+		PRE .apache .cbracket {COLOR: #008200}
+		PRE .comment {COLOR: #777}
+		PRE .annotation {COLOR: #777}
+		PRE .template_comment {COLOR: #777}
+		PRE .diff .header {COLOR: #777}
+		PRE .chunk {COLOR: #777}
+		PRE .number {COLOR: #b50000}
+		PRE .date {COLOR: #b50000}
+		PRE .regexp {COLOR: #b50000}
+		PRE .literal {COLOR: #b50000}
+		PRE .smalltalk .symbol {COLOR: #b50000}
+		PRE .smalltalk .char {COLOR: #b50000}
+		PRE .change {COLOR: #b50000}
+		PRE .tex .special {COLOR: #b50000}
+		PRE .label {COLOR: #00e}
+		PRE .javadoc {COLOR: #00e}
+		PRE .ruby .string {COLOR: #00e}
+		PRE .decorator {COLOR: #00e}
+		PRE .filter .argument {COLOR: #00e}
+		PRE .localvars {COLOR: #00e}
+		PRE .array {COLOR: #00e}
+		PRE .attr_selector {COLOR: #00e}
+		PRE .pseudo {COLOR: #00e}
+		PRE .pi {COLOR: #00e}
+		PRE .doctype {COLOR: #00e}
+		PRE .deletion {COLOR: #00e}
+		PRE .envvar {COLOR: #00e}
+		PRE .shebang {COLOR: #00e}
+		PRE .apache .sqbracket {COLOR: #00e}
+		PRE .nginx .built_in {COLOR: #00e}
+		PRE .tex .formula {COLOR: #00e}
+		PRE .keyword {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .id {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .phpdoc {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .title {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .built_in {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .aggregate {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .smalltalk .class {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .winutils {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .bash .variable {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .apache .tag {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .xml .tag {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .xml .title {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .tex .command {FONT-WEIGHT: bold; COLOR: navy}
+		PRE .nginx .built_in {FONT-WEIGHT: normal}
+		PRE .html .css {opacity: 0.5}
+		PRE .html .javascript {opacity: 0.5}
+		PRE .html .vbscript {opacity: 0.5}
+		PRE .tex .formula {opacity: 0.5}
+		PRE .apache .tag {FONT-WEIGHT: bold; COLOR: blue}
+		HTML {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		BODY {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		DIV {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		SPAN {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		APPLET {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		OBJECT {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		IFRAME {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		H1 {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		H2 {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		H3 {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		H4 {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		H5 {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		H6 {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		P {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		BLOCKQUOTE {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		PRE {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		A {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		ABBR {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		ACRONYM {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		ADDRESS {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		BIG {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		CITE {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		CODE {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		DEL {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		DFN {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		EM {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		FONT {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		IMG {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		INS {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		KBD {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		Q {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		S {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		SAMP {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		SMALL {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		STRIKE {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		STRONG {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		SUB {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		SUP {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		TT {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		VAR {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		B {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		U {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		I {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		CENTER {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		DL {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		DT {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		DD {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		OL {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		UL {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		LI {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		FIELDSET {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		FORM {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		LABEL {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		LEGEND {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		TABLE {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		CAPTION {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		TBODY {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		TFOOT {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		THEAD {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		TR {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		TH {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		TD {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; PADDING-RIGHT: 0px}
+		BODY {FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important; LINE-HEIGHT: 1.75}
+		STRONG {FONT-FAMILY: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif}
+		EM {FONT-FAMILY: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif}
+		B {FONT-FAMILY: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif}
+		I {FONT-FAMILY: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif}
+		H1 {FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important}
+		.site-title {FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important}
+		H2 {FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important}
+		H3 {FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important}
+		H4 {FONT-FAMILY: Verdana, sans-serif}
+		H5 {FONT-FAMILY: Verdana, sans-serif}
+		H6 {FONT-FAMILY: Verdana, sans-serif}
+		BODY {FONT-SIZE: 14px; BACKGROUND: #eee; COLOR: #444; }
+		P {PADDING-BOTTOM: 8px; PADDING-TOP: 8px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px}
+		#page {BACKGROUND: white}
+		#page {MAX-WIDTH: 760px; BORDER-TOP: #ddd 1px; BORDER-RIGHT: #ddd 1px solid; BORDER-BOTTOM: #ddd 1px solid; POSITION: relative; TEXT-ALIGN: left; PADDING-TOP: 20px; CLEAR: both; MARGIN: 0px auto; BORDER-LEFT: #ddd 1px solid; BACKGROUND-COLOR: #fff; _width: 700px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .1); -webkit-box-shadow: :0 0 3px rgba(0, 0, 0, .1); box-shadow: :0 0 3px rgba(0, 0, 0, .1)}
+		#header {OVERFLOW: hidden; HEIGHT: 200px; BACKGROUND: #3371a3 no-repeat right top; POSITION: relative}
+		.content {PADDING-BOTTOM: 30px; PADDING-TOP: 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px}
+		HTML {_overflow-x: hidden}
+		BODY {_overflow-x: hidden}
+		PRE {ZOOM: 1; LINE-HEIGHT: 1.3em !important}
+		H1 {FONT-SIZE: 26px}
+		H3 {MARGIN-BOTTOM: 8px; FONT-SIZE: 18px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; PADDING-LEFT: 0px; MARGIN-TOP: 36px; PADDING-RIGHT: 0px; TEXT-INDENT: 0px; border-radius: 5px}
+		.site-title {FONT-SIZE: 36px; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; PADDING-TOP: 48px; PADDING-LEFT: 40px; PADDING-RIGHT: 40px}
+		.site-title A {FONT-FAMILY: 'Constantia'; COLOR: white; TEXT-DECORATION: none; text-shadow: 0 0 1px rgba(0, 0, 0, .8)}
+		#header .description {FONT-FAMILY: 'Constantia'; COLOR: white; TEXT-DECORATION: none; text-shadow: 0 0 1px rgba(0, 0, 0, .8)}
+		.site-title A:hover {TEXT-DECORATION: underline}
+		#header .description {FONT-SIZE: 12px; MARGIN: 0px 40px; text-shadow: none}
+		#header .description A {COLOR: #fff}
+		H2 {FONT-SIZE: 18px}
+		#footer {COLOR: #777; PADDING-BOTTOM: 40px; TEXT-ALIGN: center; PADDING-TOP: 20px; PADDING-LEFT: 0px; CLEAR: both; MARGIN: 0px auto; PADDING-RIGHT: 0px}
+		#footer P {LINE-HEIGHT: 1.6em}
+		#footer A {FONT-WEIGHT: bold; COLOR: #888}
+		#footer A:hover {BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none; COLOR: #000; BORDER-RIGHT-STYLE: none; TEXT-DECORATION: none}
+		A:hover {TEXT-DECORATION: underline}
+		A:hover:visited {TEXT-DECORATION: underline}
+		H2 A:hover {COLOR: #27d !important}
+		H2 SPAN A:hover {COLOR: #27d !important}
+		A {COLOR: #27d; TEXT-DECORATION: none}
+		.msg {FONT-SIZE: 14px; BORDER-TOP: #d7eae2 1px solid; BORDER-RIGHT: #d7eae2 1px solid; BACKGROUND: #eef7f5; BORDER-BOTTOM: #d7eae2 1px solid; ZOOM: 1; COLOR: #333; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; PADDING-LEFT: 15px; BORDER-LEFT: #d7eae2 1px solid; MARGIN-TOP: 15px; PADDING-RIGHT: 15px}
+		.msg OL {MARGIN: 0px 20px}
+		.msg {FONT-SIZE: 14px}
+		TABLE.zebra {BORDER-TOP: 1px solid; FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important; BORDER-RIGHT: 1px solid; BORDER-BOTTOM: 1px solid; MARGIN: 0px; BORDER-LEFT: 1px solid}
+		.zebra TH {BORDER-TOP: 1px solid; FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important; BORDER-RIGHT: 1px solid; BORDER-BOTTOM: 1px solid; MARGIN: 0px; BORDER-LEFT: 1px solid}
+		.zebra TD {BORDER-TOP: 1px solid; FONT-FAMILY: 'Microsoft Yahei', Tahoma, Arial !important; BORDER-RIGHT: 1px solid; BORDER-BOTTOM: 1px solid; MARGIN: 0px; BORDER-LEFT: 1px solid}
+		TABLE.zebra {MARGIN-BOTTOM: 6px; BORDER-TOP-COLOR: #abb8ce; BACKGROUND: #ededed; BORDER-COLLAPSE: collapse; TABLE-LAYOUT: fixed; PADDING-BOTTOM: 1px; BORDER-BOTTOM-COLOR: #abb8ce; PADDING-TOP: 0px; PADDING-LEFT: 0px; BORDER-SPACING: 0; BORDER-RIGHT-COLOR: #abb8ce; PADDING-RIGHT: 1px; WIDTH: 100%; BORDER-LEFT-COLOR: #abb8ce}
+		.zebra TH {BORDER-TOP-COLOR: #f8f8f8; VERTICAL-ALIGN: middle; BACKGROUND: #d0dbee; FONT-WEIGHT: bold; PADDING-BOTTOM: 5px; BORDER-BOTTOM-COLOR: #abb8ce; TEXT-ALIGN: left; PADDING-TOP: 5px; PADDING-LEFT: 4px; BORDER-RIGHT-COLOR: #abb8ce; PADDING-RIGHT: 4px; BORDER-LEFT-COLOR: #f8f8f8; text-shadow: 1px 1px 0 #e4edfb}
+		.zebra THEAD TH {TEXT-ALIGN: center}
+		.zebra TH STRONG {BORDER-BOTTOM: #090 1px dashed; COLOR: #090; TEXT-DECORATION: underline}
+		.zebra TD {PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px}
+		.zebra TH.separate {BORDER-TOP-COLOR: #e1f196; BORDER-BOTTOM-COLOR: #aecd1b; TEXT-ALIGN: center; BORDER-RIGHT-COLOR: #aecd1b; BACKGROUND-COLOR: #f3f7fd; BORDER-LEFT-COLOR: #f3fad6}
+		.zebra TD {VERTICAL-ALIGN: top; PADDING-BOTTOM: 4px; TEXT-ALIGN: left; PADDING-TOP: 4px; FONT: 12px/18px Consolas, "Courier New", Courier, monospace; PADDING-LEFT: 4px; PADDING-RIGHT: 4px}
+		.zebra TD {BORDER-TOP-COLOR: #f8f8f8; BACKGROUND: #e0e8f5; BORDER-BOTTOM-COLOR: #abb8ce; BORDER-RIGHT-COLOR: #abb8ce; BORDER-LEFT-COLOR: #f8f8f8}
+		.zebra TR.odd TH {BACKGROUND: #dbe4f4}
+		.zebra TR.odd TD {BACKGROUND: #e6eef9}
+		.zebra BR {MARGIN-BOTTOM: 1.8em}
+		TABLE.zebra .parameter {WIDTH: 7em}
+		TABLE.zebra .type {WIDTH: 7em}
+		TABLE.zebra .default {WIDTH: 7em}
+		</STYLE>
+  </head>
+  
+  <body>
+	<center><font color="red" size="5">根据网络中样例整理了artDialog加强版，针对iframe使用方法</font></center><br/>
+	<font color="#000000">自适应内容：</font><br/>
+	<font color="blue">artDialog的特殊UI框架能够适应内容变化，甚至连外部程序动态插入的内容它仍然能自适应，因此你不必去考虑消息内容尺寸使用它。它的消息容器甚至能够根据宽度让文本居中或居左对齐——这一切全是XHTML+CSS原生实现。</font><br/>
+	<font color="#000000">完善的接口：</font>
+	<font color="blue">它的接口完善，可以轻易与外部程序配合使用。如异步写入消息、控制位置、尺寸、显示与隐藏、关闭等。</font><br/>
+	<font color="#000000">细致的体验：</font>
+	<font color="blue">如果不是在输入状态，它支持Esc快捷键关闭；可指定在元素附近弹出，让操作更便捷；智能给按钮添加焦点；黄金比例垂直居中；超大响应区域特别为ipad等触屏设备优化；预先缓存皮肤图片更快响应……</font><br/>
+	<font color="#000000">跨平台兼容：</font>
+	<font color="blue">兼容：IE6+、Firefox、Chrome、Safari、Opera以及iPad等移动设备。并且IE6下也能支持现代浏览器的静止定位(fixed)、覆盖下拉控件、alpha通道png背景。</font><br/>
+
+	jquery基础框架引入：<font color="blue">../js/jquery-1.10.2.min.js</font><br/>
+	如果项目采用jQuery作为框架，则引用jQuery artDialog版本：<font color="blue">artDialog/jquery.artDialog.js</font><br/>
+	如果需要在iframe应用下提供更好的支持，需要加上：<font color="blue">artDialog/plugins/iframeTools.js</font><br/><br/>
+	
+
+	<DIV class=content sizcache="174" sizset="0"><DIV id=primary-wrapper sizcache="174" sizset="0">
+		<TABLE class=zebra style="MARGIN-TOP: 20px" sizcache="28" sizset="5">
+		<COLGROUP>
+		<COL class=col1>
+		<COL class=col2></COLGROUP>
+		<THEAD sizcache="18" sizset="0">
+		<TR sizcache="18" sizset="0">
+		<TH class=name style="WIDTH: 22em">名称</TH>
+		<TH class=note colSpan=3>描述</TH></TR></THEAD>
+		<TBODY sizcache="28" sizset="5">
+		<TR sizcache="18" sizset="2">
+		<TH class=separate colSpan=4><ABBREV>核心方法</ABBREV></TH></TR>
+		<TR class=odd sizcache="22" sizset="0">
+		<TH sizcache="4" sizset="3"><A href="#top">art.dialog.top</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="0">获取artDialog可用最高层window对象。这与直接使用window.top不同，它能排除artDialog对象不存在已经或者顶层页面为框架集的情况<BR>这是iframe应用工具集中的核心方法，你可以用它来操作父页面对象（包括上面的对话框）</TD></TR>
+		<TR sizcache="22" sizset="1">
+		<TH sizcache="4" sizset="4"><A href="#data">art.dialog.data(name, value)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="1">跨框架数据共享写入接口。<BR>框架与框架之间以及与主页面之间进行数据交换是非常头疼的事情，常规情况下你必须知道框架的名称才能进行数据交换，如果是在复杂的多层框架下操作简直就是噩梦。<BR>而data方法就是为了解决这个问题，你完全不用管框架层级问题，它可以写入任何类型的数据，而做到各个页面之间数据共享。</TD></TR>
+		<TR class=odd sizcache="20" sizset="2">
+		<TH sizcache="4" sizset="5"><A href="#data">art.dialog.data(name)</A></TH>
+		<TD colSpan=3>跨框架数据共享读取接口。指定name即返回数据，任何引用了artDialog的页面都有效</TD></TR>
+		<TR sizcache="20" sizset="3">
+		<TH sizcache="4" sizset="6"><A href="#removeData">art.dialog.removeData(name)</A></TH>
+		<TD colSpan=3>跨框架数据共享删除接口。删除指定名称的数据，任何引用了artDialog的页面都有效</TD></TR>
+		<TR sizcache="18" sizset="7">
+		<TH class=separate colSpan=4><ABBREV>异步数据对话框</ABBREV></TH></TR>
+		<TR class=odd sizcache="22" sizset="3">
+		<TH sizcache="4" sizset="7"><A href="#open">art.dialog.open(url, options, cache)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="3">创建一个iframe页面<BR>参数: 地址, 配置参数, 缓存开关(默认true)</TD></TR>
+		<TR sizcache="22" sizset="4">
+		<TH sizcache="4" sizset="8"><A href="#api">art.dialog.open.api</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="4">iframe页面获取open方法扩展方法。 <BR>(注意这个iframe中也必须引用artDialog脚本文件)</TD></TR>
+		<TR class=odd sizcache="22" sizset="5">
+		<TH sizcache="4" sizset="9"><A href="#opener">art.dialog.opener</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="5">iframe页面获取open方法触发来源页面window对象。 <BR>(注意这个iframe中也必须引用artDialog脚本文件)</TD></TR>
+		<TR class=odd sizcache="22" sizset="5">
+		<TH sizcache="4" sizset="9"><A href="#opener">art.dialog.open.origin</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="5">iframe页面获取open方法触发来源页面window对象。 <BR>(注意这个iframe中也必须引用artDialog脚本文件)</TD></TR>
+		<TR sizcache="28" sizset="5">
+		<TH sizcache="4" sizset="10"><A href="#close">art.dialog.close()</A></TH>
+		<TD colSpan=3 sizcache="28" sizset="5">iframe页面关闭open方法创建的对话框的快捷方式。<BR>close方法等同于：
+		<DIV>var api = art.dialog.open.api;</DIV>
+		<DIV>api &amp;&amp; api.close();</DIV><BR>(注意这个iframe中也必须引用artDialog脚本文件)</TD></TR>
+		<TR class=odd sizcache="22" sizset="8">
+		<TH sizcache="4" sizset="11"><A href="#load">art.dialog.load(url, options, cache)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="8">Ajax加载内容<BR>参数：地址, 配置参数, 缓存开关(默认true)</TD></TR>
+		<TR sizcache="18" sizset="13">
+		<TH class=separate colSpan=4><ABBREV>基础交互对话框</ABBREV></TH></TR>
+		<TR sizcache="22" sizset="9">
+		<TH sizcache="4" sizset="12"><A href="#alert">art.dialog.alert(content)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="9">警告消息 (同时只允许一个alert)<BR>参数: 内容</TD></TR>
+		<TR class=odd sizcache="22" sizset="10">
+		<TH sizcache="4" sizset="13"><A href="#confirm">art.dialog.confirm(content, ok, cancel)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="10">确认 (同时只允许一个confirm)<BR>参数: 内容, 确定按钮回调函数, 取消按钮回调函数</TD></TR>
+		<TR sizcache="22" sizset="11">
+		<TH sizcache="4" sizset="14"><A href="#prompt">art.dialog.prompt(content, ok, value)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="11">提问 (同时只允许一个prompt)<BR>参数: 内容, 确定按钮回调函数, 文本框默认值</TD></TR>
+		<TR sizcache="22" sizset="12">
+		<TH sizcache="4" sizset="15"><A href="#tips">art.dialog.tips(content, time)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="12">短暂提示(同时只允许一个tips)<BR>参数: 内容、显示时间(单位秒, 默认1.5)</TD></TR>
+		<TR sizcache="18" sizset="18">
+		<TH class=separate colSpan=4><ABBREV>自定义</ABBREV></TH></TR>
+		<TR sizcache="22" sizset="13">
+		<TH sizcache="4" sizset="16"><A href="#through">art.dialog.through(options)</A></TH>
+		<TD colSpan=3 sizcache="22" sizset="13">创建一个普通可穿越框架的对话框<BR>不鼓励直接使用window.top这样的方式穿越，这样可能因为对话框触发页面重置导致其创建的对象在内存中被清空而发生异常</TD></TR></TBODY></TABLE>
+		<DIV class=msg sizcache="22" sizset="14">
+		<OL sizcache="22" sizset="14">
+		<LI>顶层面需要引用了artDialog才能实现穿越框架 
+		<LI>chrome浏览器本地运行会有安全限制，请在服务器上查看本页面 
+		<LI sizcache="22" sizset="14">artDialog不支持怪异模式，请用主流网站采用的XHTML1.0或者HTML5的DOCTYPE申明，如：<BR>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<BR>或者<BR>&lt;!DOCTYPE HTML&gt; </LI></OL></DIV>
+		<DIV id=demo sizcache="174" sizset="0">
+		<H3 id=top>获取artDialog可用顶层页面window对象[top]</H3>art.dialog.top默认引用的是widnow.top（如果window.top是框架集、跨域、artDialog对象不存，否则可能为window.parent或者当前window）这里页面所有穿越的对话框最终是在这个window上。 
+		<P></P>
+		<DIV id=DOM-top sizcache="174" sizset="0"><PRE sizcache="174" sizset="0"><CODE class=javascript sizcache="151" sizset="0"><SPAN class=keyword>var</SPAN> win = art.dialog.top;
+		win.document.title = <SPAN class=string>'我修改了页面标题'</SPAN>;
+		win.document.getElementById(<SPAN class=string>'testInput'</SPAN>).value = <SPAN class=string>'hello world!'</SPAN>;
+		</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="0">
+			<script type="text/javascript">
+			function updateDocTitle() {
+				var win = art.dialog.top;
+				win.document.title = '我修改了页面标题';
+				win.document.getElementById('testInput').value = 'hello world!';
+			}
+			</script>
+			<BUTTON id=btn8 onclick="updateDocTitle();" title=btn8 class=runCode name=DOM-top>运行»</BUTTON> </P>
+		
+		<H3 id=through>可穿越框架的标准对话框[through]</H3>
+		<P>如果iframe刷新或者被关闭，它创建的对话框会自动回收，防止因内存清空而导致错误。不鼓励直接使用window.top.art.dialog()与art.dialog.top.art.dialog()这样的方式穿越框架，它们会带来潜在的错误。</P>
+		<DIV id=demoCode-through sizcache="174" sizset="1"><PRE sizcache="174" sizset="1"><CODE class=javascript sizcache="151" sizset="1"><SPAN class=keyword>var</SPAN> throughBox = art.dialog.through;
+		throughBox({
+		    content: <SPAN class=string>'我是一个普通的对话框，只是能穿越框架而已'</SPAN>,
+		    lock: <SPAN class=literal>true</SPAN>
+		});
+		</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="1">
+			<BUTTON id=btn8 onclick="art.dialog.through({
+					    content: '我是一个普通的对话框，只是能穿越框架而已',
+					    lock: true
+					});" title=btn8 class=runCode name=demoCode-through>运行»</BUTTON> </P>
+		
+		
+		<H3 id=open>嵌入网页[open] <SPAN id=api></SPAN><SPAN id=opener></SPAN></H3>
+		<P>同域下能够自适应iframe大小，但chrome 浏览器本地运行会认为跨域而无法适应大小 </P>
+		<P>open方法有如下这几个私有个功能</P>
+		<TABLE class=zebra sizcache="21" sizset="14">
+		<COLGROUP>
+		<COL class=col1>
+		<COL class=col2></COLGROUP>
+		<THEAD sizcache="18" sizset="20">
+		<TR sizcache="18" sizset="20">
+		<TH class=name style="WIDTH: 22em">名称</TH>
+		<TH class=note>类型</TH>
+		<TH class=note colSpan=3>描述</TH></TR></THEAD>
+		<TBODY sizcache="21" sizset="14">
+		<TR sizcache="18" sizset="23">
+		<TH class=separate colSpan=5>iframe内部静态方法</TH></TR>
+		<TR class=odd sizcache="20" sizset="14">
+		<TH>art.dialog.open.api</TH>
+		<TD>Object</TD>
+		<TD colSpan=3>从iframe页面引用对话框扩展方法</TD></TR>
+		<TR sizcache="20" sizset="16">
+		<TH>art.dialog.open.origin </TH>
+		<TD>object Window</TD>
+		<TD colSpan=3>从iframe页面引用对话框触发页面的window</TD></TR>
+		<TR sizcache="20" sizset="16">
+		<TH>art.dialog.opener </TH>
+		<TD>object Window</TD>
+		<TD colSpan=3>从iframe页面引用对话框触发页面的window</TD></TR>
+		<TR sizcache="18" sizset="26">
+		<TH class=separate colSpan=5><ABBREV>扩展方法</ABBREV></TH></TR>
+		<TR sizcache="20" sizset="18">
+		<TH>iframe</TH>
+		<TD>HTMLElement</TD>
+		<TD colSpan=3>引用open创建的iframe（4.0.1新增）</TD></TR></TBODY></TABLE>
+		<P sizcache="4" sizset="17">其他扩展方法：<A href="artDialog-api.html#API" target=_blank>artDialog-api.html#API</A></P>
+		<H4>一、使用iframe内部脚本控制对话框</H4>
+		<P sizcache="4" sizset="18">请打开 <A href="test-login.html" target=_blank>test-login.html</A> 查看源码</P>
+		<DIV id=demoCode04 sizcache="174" sizset="2"><PRE sizcache="174" sizset="2"><CODE class=javascript sizcache="131" sizset="4">art.dialog.open(<SPAN class=string>'test-login.html'</SPAN>, {title: <SPAN class=string>'提示'</SPAN>});</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="2">
+			<BUTTON onclick="art.dialog.open('test-login.html', {title: '提示'});" id=btn4 title=btn4 class=runCode name=demoCode04>运行»</BUTTON> </P>
+		
+		
+		<P>baidu maps (示例来自baidu)</P>
+		<DIV id=demoCode04-5 sizcache="174" sizset="3"><PRE sizcache="174" sizset="3"><CODE class=javascript sizcache="131" sizset="6">art.dialog.open(<SPAN class=string>'http://map.baidu.com'</SPAN>);</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="3">
+			<BUTTON onclick="art.dialog.open('http://map.baidu.com');" class=runCode name=demoCode04-5>运行»</BUTTON> </P>
+		
+		
+		<H4>二、在外部对iframe进行控制</H4>
+		<P>对iframe控制需要用到open私有的this.iframe扩展方法：</P>
+		<DIV id=demoCode04-2 sizcache="174" sizset="4"><PRE sizcache="174" sizset="4"><CODE class=javascript sizcache="151" sizset="2">art.dialog.open(<SPAN class=string>'login_iframe_2.html'</SPAN>, {
+		    title: <SPAN class=string>'登录'</SPAN>,
+		    <SPAN class=comment>// 在open()方法中，init会等待iframe加载完毕后执行</SPAN>
+		    init: <SPAN class=function sizcache="151" sizset="2"><SPAN class=keyword>function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		    	<SPAN class=keyword>var</SPAN> iframe = <SPAN class=keyword>this</SPAN>.iframe.contentWindow;
+		    	<SPAN class=keyword>var</SPAN> top = art.dialog.top;<SPAN class=comment>// 引用顶层页面window对象</SPAN>
+		        <SPAN class=keyword>var</SPAN> username = iframe.document.getElementById(<SPAN class=string>'login-form-username'</SPAN>);
+		        username.value = <SPAN class=string>'guest'</SPAN>;
+		        setTimeout(<SPAN class=function sizcache="151" sizset="7"><SPAN class=keyword>function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		        	username.select();
+		        }, <SPAN class=number>80</SPAN>);
+		        top.document.title = <SPAN class=string>'测试'</SPAN>;
+		    },
+		    ok: <SPAN class=function sizcache="151" sizset="8"><SPAN class=keyword>function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		    	<SPAN class=keyword>var</SPAN> iframe = <SPAN class=keyword>this</SPAN>.iframe.contentWindow;
+		    	<SPAN class=keyword>if</SPAN> (!iframe.document.body) {
+		        	alert(<SPAN class=string>'iframe还没加载完毕呢'</SPAN>)
+		        	<SPAN class=keyword>return</SPAN> <SPAN class=literal>false</SPAN>;
+		        };
+		    	<SPAN class=keyword>var</SPAN> form = iframe.document.getElementById(<SPAN class=string>'login-form'</SPAN>),
+		            username = iframe.document.getElementById(<SPAN class=string>'login-form-username'</SPAN>),
+		    		password = iframe.document.getElementById(<SPAN class=string>'login-form-password'</SPAN>);
+		        <SPAN class=keyword>if</SPAN> (check(username) &amp;&amp; check(password)) form.submit();
+		       	<SPAN class=keyword>return</SPAN> <SPAN class=literal>false</SPAN>;
+		    },
+		    cancel: <SPAN class=literal>true</SPAN>
+		});
+		<SPAN class=comment>// 表单验证</SPAN>
+		<SPAN class=keyword>var</SPAN> check = <SPAN class=function sizcache="151" sizset="17"><SPAN class=keyword>function</SPAN> <SPAN class=params>(input)</SPAN> {</SPAN>
+		    <SPAN class=keyword>if</SPAN> (input.value === <SPAN class=string>''</SPAN>) {
+		        inputError(input);
+		        input.focus();
+		        <SPAN class=keyword>return</SPAN> <SPAN class=literal>false</SPAN>;
+		    } <SPAN class=keyword>else</SPAN> {
+		        <SPAN class=keyword>return</SPAN> <SPAN class=literal>true</SPAN>;
+		    };
+		};
+		<SPAN class=comment>// 输入错误提示</SPAN>
+		<SPAN class=keyword>var</SPAN> inputError = <SPAN class=function sizcache="151" sizset="23"><SPAN class=keyword>function</SPAN> <SPAN class=params>(input)</SPAN> {</SPAN>
+		    clearTimeout(inputError.timer);
+		    <SPAN class=keyword>var</SPAN> num = <SPAN class=number>0</SPAN>;
+		    <SPAN class=keyword>var</SPAN> fn = <SPAN class=function sizcache="151" sizset="26"><SPAN class=keyword>function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		        inputError.timer = setTimeout(<SPAN class=function sizcache="151" sizset="27"><SPAN class=keyword>function</SPAN> <SPAN class=params>()</SPAN> {</SPAN>
+		            input.className = input.className === <SPAN class=string>''</SPAN> ? <SPAN class=string>'login-form-error'</SPAN> : <SPAN class=string>''</SPAN>;
+		            <SPAN class=keyword>if</SPAN> (num === <SPAN class=number>5</SPAN>) {
+		                input.className === <SPAN class=string>''</SPAN>;
+		            } <SPAN class=keyword>else</SPAN> {
+		                fn(num ++);
+		            };
+		        }, <SPAN class=number>150</SPAN>);
+		    };
+		    fn();
+		};
+		</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="4"><font color="red">样例供参考，不提供运行实例</font>
+			<BUTTON class=runCode name=demoCode04-2 disabled="disabled">运行»</BUTTON> </P>
+
+		
+		<H4>三、跨域访问</H4>
+		<P>跨域访问无法自适应大小，也无法进行父页面与子页面数据交换</P>
+		<DIV id=demoCode_open_domain sizcache="174" sizset="5"><PRE sizcache="174" sizset="5"><CODE class=javascript sizcache="131" sizset="21">art.dialog.open(<SPAN class=string>'http://www.connect.renren.com/igadget/renren/index.html'</SPAN>,
+		    {title: <SPAN class=string>'人人网'</SPAN>, width: <SPAN class=number>320</SPAN>, height: <SPAN class=number>400</SPAN>});</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="5">
+			<BUTTON onclick="art.dialog.open(
+				'http://www.connect.renren.com/igadget/renren/index.html',
+    			{title: '人人网', width: 320, height: 400});" class=runCode name=demoCode_open_domain>运行»</BUTTON> </P>
+		
+		
+		<H2 id=data style="COLOR: #00c">框架与框架、主页面数据共享[data &amp; removeData]</H2>
+		<P>框架与框架之间以及与主页面之间进行数据交换是非常头疼的事情，常规情况下你必须知道框架的名称才能进行数据交换，如果是在复杂的多层框架下操作简直就是开发人员噩梦，而这样的问题在CMS多框架应用中十分常见。</P>
+		<P sizcache="4" sizset="19">在artDialog中这一切完全被简化，它有一个简单易用的数据共享接口，可以共享任意类型的数据供各个框架页面读取，它与页面名称、层级毫无关系。<A href="http://www.planeart.cn/?p=1554" target=_blank>相关原理</A></P>
+		<P sizcache="4" sizset="20">请打开 <A href="iframeA.html" target=_blank>iframeA.html</A> 源码查看范例。由于art.dialog.open方法打开的iframe加剧了框架的层级的复杂性，所以请特别重视这个data方法！</P>
+		<DIV id=demoCode04-3 sizcache="174" sizset="6"><PRE sizcache="174" sizset="6"><CODE class=javascript sizcache="131" sizset="23">art.dialog.data(<SPAN class=string>'test'</SPAN>, document.getElementById(<SPAN class=string>'demoInput04-3'</SPAN>).value);
+		art.dialog.open(<SPAN class=string>'iframeA.html'</SPAN>, <SPAN class=literal>null</SPAN>, <SPAN class=literal>false</SPAN>);
+		<SPAN class=comment>// 此时 iframeA.html 页面可以使用 art.dialog.data('test') 获取到数据，如：</SPAN>
+		<SPAN class=comment>// document.getElementById('aInput').value = art.dialog.data('test');</SPAN>
+		</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="6">
+			<BUTTON onclick="
+				art.dialog.data('test', document.getElementById('demoInput04-3').value);
+				art.dialog.open('iframeA.html', null, false);" class=runCode name=demoCode04-3>运行»</BUTTON> <INPUT id=demoInput04-3 title=demoInput04-3 style="PADDING-BOTTOM: 4px; PADDING-TOP: 4px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; WIDTH: 16em" value=数据共享机制> （请输入测试文字）
+		<SCRIPT>var _data = art.dialog.data('iframeTools'); if (_data) document.getElementById('demoInput04-3').value = _data;</SCRIPT>
+		</P>
+		
+		
+		<H3 id=load>Ajax[load]</H3>
+		<P>特别说明：第三个参数为ajax缓存开关，默认为true。由于浏览器限制，ajax需要在服务端运行才能正确运行本例子。</P>
+		<H4>一、加载网页片段</H4>
+		<DIV id=demoCode05 sizcache="174" sizset="7"><PRE sizcache="174" sizset="7"><CODE class=javascript sizcache="151" sizset="30">art.dialog.load(<SPAN class=string>'./ajaxContent/content.html'</SPAN>, {
+		    title: <SPAN class=string>'远程载入HTML片段'</SPAN>,
+		    ok: <SPAN class=function sizcache="151" sizset="30"><SPAN class=keyword>function</SPAN><SPAN class=params>(topWin)</SPAN>{</SPAN>
+		    	art.dialog(<SPAN class=string>'hello world'</SPAN>);
+		    },
+		    close: <SPAN class=function sizcache="151" sizset="31"><SPAN class=keyword>function</SPAN><SPAN class=params>()</SPAN>{</SPAN>
+		    	art.dialog.tips(<SPAN class=string>'close'</SPAN>)
+		    }
+		}, <SPAN class=literal>false</SPAN>);</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="7">
+			<BUTTON onclick="art.dialog.load('test-login.html', {
+					    title: '远程载入HTML片段',
+					    ok: function(topWin){
+					    	art.dialog('hello world');
+					    },
+					    close: function(){
+					    	art.dialog.tips('close')
+					    }
+					}, false);" id=btn5 title=btn5 class=runCode name=demoCode05>运行»</BUTTON> </P>
+		
+		
+		<DIV id=demoCode05-2 sizcache="174" sizset="8"><PRE sizcache="174" sizset="8"><CODE class=javascript sizcache="131" sizset="30">art.dialog.load(<SPAN class=string>'./ajaxContent/login.html'</SPAN>, <SPAN class=literal>false</SPAN>);</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="8">
+			<BUTTON onclick="art.dialog.load('test-login.html', false);" id=btn5 title=btn5 class=runCode name=demoCode05-2>运行»</BUTTON> </P>
+		
+		
+		<H3 id=alert>警告消息[alert]</H3>
+		<DIV id=demoCode01 sizcache="174" sizset="9"><PRE sizcache="174" sizset="9"><CODE class=javascript sizcache="131" sizset="31">art.dialog.alert(<SPAN class=string>'警察叔叔会请你喝茶！'</SPAN>);</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="9">
+			<BUTTON onclick="art.dialog.alert('警察叔叔会请你喝茶！');" class=runCode name=demoCode01>运行»</BUTTON> </P>
+		
+		<H3 id=confirm>确认消息[confirm]</H3>
+		<DIV></DIV>
+		<DIV id=demoCode02 sizcache="174" sizset="10"><PRE sizcache="174" sizset="10"><CODE class=javascript sizcache="151" sizset="32">art.dialog.confirm(<SPAN class=string>'你确认删除操作？'</SPAN>, <SPAN class=function sizcache="151" sizset="32"><SPAN class=keyword>function</SPAN><SPAN class=params>()</SPAN>{</SPAN>
+		    <SPAN class=keyword>var</SPAN> top = art.dialog.top,
+		        input = document.getElementById(<SPAN class=string>'demoInput02'</SPAN>),
+		        photo = top.document.getElementById(<SPAN class=string>'photo'</SPAN>);
+		        
+		    <SPAN class=keyword>if</SPAN> (input) input.parentNode.removeChild(input);
+		    <SPAN class=keyword>if</SPAN> (photo) photo.innerHTML = <SPAN class=string>'&lt;img src="images/lixiaolong.png" /&gt;'</SPAN>;
+		}, <SPAN class=function sizcache="151" sizset="36"><SPAN class=keyword>function</SPAN><SPAN class=params>()</SPAN>{</SPAN>
+		    art.dialog.tips(<SPAN class=string>'你取消了操作'</SPAN>);
+		});</CODE></PRE></DIV>
+		<P class=buttons sizcache="34" sizset="0">
+			<script type="text/javascript">
+			function testConfirm() {
+				art.dialog.confirm("你确认删除操作？", function(){
+				    var top = art.dialog.top,
+				        input = document.getElementById("demoInput02"),
+				        photo = top.document.getElementById("photo");
+				        
+				    if (input) input.parentNode.removeChild(input);
+				    if (photo) photo.innerHTML = "<img src=\"../resource/plugins/temp/temp.jpg\" />";
+				}, function(){
+				    art.dialog.tips("你取消了操作");
+				});
+			}
+			</script>
+			<BUTTON onclick="testConfirm()" class=runCode name=demoCode02>运行»</BUTTON><BUTTON disabled id=demoInput02 title=demoInput02>点运行按钮删掉我</BUTTON> </P>
+		
+		<H3 id=prompt>提问消息[prompt]</H3>
+		<P>特别说明：回调函数第一个参数为输入的值</P>
+		<DIV id=demoCode03 sizcache="174" sizset="11"><PRE sizcache="174" sizset="11"><CODE class=javascript sizcache="151" sizset="37">art.dialog.prompt(<SPAN class=string>'你的名字是什么？'</SPAN>, <SPAN class=function sizcache="151" sizset="37"><SPAN class=keyword>function</SPAN><SPAN class=params>(data)</SPAN>{</SPAN>
+		    <SPAN class=comment>// data 代表输入数据;</SPAN>
+		    <SPAN class=keyword>var</SPAN> input = document.getElementById(<SPAN class=string>'demoInput03'</SPAN>),
+		        topVal = art.dialog.top.document.getElementById(<SPAN class=string>'testInput'</SPAN>);
+		    <SPAN class=keyword>if</SPAN> (input) input.value = data;
+		    <SPAN class=keyword>if</SPAN> (topVal) topVal.value = data;
+		}, <SPAN class=string>'我是糖饼'</SPAN>);</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="12">
+			<BUTTON onclick="art.dialog.prompt('你的名字是什么？', function(data){
+						    // data 代表输入数据;
+						    var input = document.getElementById('demoInput03'),
+						        topVal = art.dialog.top.document.getElementById('testInput');
+						    if (input) input.value = data;
+						    if (topVal) topVal.value = data;
+						}, '我是糖饼');" class=runCode name=demoCode03>运行»</BUTTON> <INPUT disabled id=demoInput03 title=demoInput03> </P>
+		
+		
+		<H3 id=tips>提示消息[tips]</H3>
+		<DIV id=demoCode07 sizcache="174" sizset="12"><PRE sizcache="174" sizset="12"><CODE class=javascript sizcache="131" sizset="41">art.dialog.tips(<SPAN class=string>'提交成功！'</SPAN>, <SPAN class=number>1.5</SPAN>);</CODE></PRE></DIV>
+		<P class=buttons sizcache="33" sizset="13">
+			<BUTTON onclick="art.dialog.tips('提交成功！', 1.5);" class=runCode name=demoCode07>运行»</BUTTON> </P></DIV></DIV>
+
+
+		<DIV class=clear></DIV>
+	</DIV>
+
+  </body>
+</html>
